@@ -7,7 +7,7 @@
   - `id_compra` → `COMPRA(id_compra)`
   - `id_questionario` → `QUESTIONÁRIO(id_questionario)`
   - `id_compra` NOT NULL e UNIQUE
-- QUESTIONÁRIO (**id_questionario**, titulo, descricao, data_criacao)
+- QUESTIONÁRIO (**id_questionario**, titulo, descricao, data_criacao, categoria)
 - TEMA (**id_tema**, nome)
 - QUESTÃO (**id_questao**, enunciado, tipo, id_tema)
   - `id_tema` → `TEMA(id_tema)`

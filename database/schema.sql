@@ -17,6 +17,9 @@ CREATE TABLE questionario (
     titulo TEXT NOT NULL,
     descricao TEXT,
     data_criacao DATE NOT NULL DEFAULT CURRENT_DATE
+    categoria TEXT NOT NULL CHECK (
+        categoria IN ('Cesta matinal', 'Caixa de presente')
+    ),
 );
 
 CREATE TABLE avaliacao (
