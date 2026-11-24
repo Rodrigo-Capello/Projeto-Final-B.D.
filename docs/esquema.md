@@ -1,13 +1,16 @@
 # Esquema relacional
 
 - CLIENTE (**id_cliente**, nome)
-- COMPRA (**id_compra**, data_compra, data_entrega, categoria, id_cliente)
+- COMPRA (**id_compra**, data_compra, data_entrega, categoria, ocasiao, id_cliente)
   - `id_cliente` → `CLIENTE(id_cliente)`
+  - `ocasiao` NOT NULL.
 - AVALIAÇÃO (**codigo_avaliacao**, data_envio, data_conclusao, id_compra, id_questionario)
   - `id_compra` → `COMPRA(id_compra)`
   - `id_questionario` → `QUESTIONÁRIO(id_questionario)`
   - `id_compra` NOT NULL e UNIQUE
-- QUESTIONÁRIO (**id_questionario**, titulo, descricao, data_criacao, categoria)
+- QUESTIONÁRIO (**id_questionario**, titulo, descricao, data_criacao, categoria, ocasiao)
+  - `(categoria, ocasiao)` é uma chave candidata alternativa (UNIQUE).
+  - `ocasiao` NOT NULL.
 - TEMA (**id_tema**, nome)
 - QUESTÃO (**id_questao**, enunciado, tipo, id_tema)
   - `id_tema` → `TEMA(id_tema)`
@@ -20,7 +23,6 @@
   - `id_questao` → `QUESTÃO(id_questao)`
   - `codigo_avaliacao` e `id_questao` NOT NULL.
   - `(codigo_avaliacao, id_questao)`  UNIQUE.
-  - Uma avaliação só pode conter respostas às questões do questionário que ela usa.
   - `nota` para questões de escala e `comentario` para questões de texto livre.
 
 

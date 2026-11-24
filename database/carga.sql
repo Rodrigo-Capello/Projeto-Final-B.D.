@@ -1,18 +1,78 @@
 INSERT INTO cliente (nome)
 VALUES
-    ('Lucas Cardoso'),
-    ('Lucas Camargo'),
-    ('Irineu Stroka'),
-    ('João Pedro de Souza'),
-    ('Victoria Alves');
+    ('Ana Martins'),
+    ('Bruno Ribeiro'),
+    ('Camila Souza'),
+    ('Diego Almeida'),
+    ('Elisa Costa'),
+    ('Felipe Santos'),
+    ('Gabriela Lima'),
+    ('Henrique Oliveira'),
+    ('Isabela Rocha'),
+    ('João Ferreira'),
+    ('Larissa Gomes'),
+    ('Marcos Vieira'),
+    ('Natália Lopes'),
+    ('Otávio Mendes'),
+    ('Paula Cardoso'),
+    ('Rafael Nunes'),
+    ('Sofia Teixeira'),
+    ('Thiago Barbosa'),
+    ('Vitória Dias'),
+    ('William Ribeiro'),
+    ('Beatriz Monteiro'),
+    ('Caio Duarte'),
+    ('Daniela Azevedo'),
+    ('Eduardo Campos'),
+    ('Fernanda Melo'),
+    ('Gustavo Pires'),
+    ('Helena Carvalho'),
+    ('Igor Batista'),
+    ('Júlia Andrade'),
+    ('Leonardo Moraes');
 
-INSERT INTO compra (data_compra, data_entrega, categoria, id_cliente)
+INSERT INTO compra (data_compra, data_entrega, categoria, ocasiao, id_cliente)
 VALUES
-    ('2026-10-03', '2026-10-04', 'Cesta matinal', 1),
-    ('2026-10-10', '2026-10-12', 'Caixa de presente', 2),
-    ('2026-11-05', '2026-11-06', 'Caixa de presente', 1),
-    ('2026-11-12', '2026-11-14', 'Cesta matinal', 3),
-    ('2026-11-23', NULL, 'Cesta matinal', 4);
+    ('2026-10-03', '2026-10-04', 'Cesta matinal', 'Normal', 1),
+    ('2026-10-10', '2026-10-12', 'Caixa de presente', 'Normal', 2),
+    ('2026-11-05', '2026-11-06', 'Caixa de presente', 'Normal', 1),
+    ('2026-11-12', '2026-11-14', 'Cesta matinal', 'Normal', 3),
+    ('2026-11-23', NULL, 'Cesta matinal', 'Normal', 4),
+    ('2025-12-20', '2025-12-24', 'Cesta matinal', 'Natal', 2),
+    ('2025-12-21', '2025-12-24', 'Caixa de presente', 'Natal', 5),
+    ('2026-06-08', '2026-06-12', 'Cesta matinal', 'Dia dos Namorados', 3),
+    ('2026-06-09', '2026-06-12', 'Caixa de presente', 'Dia dos Namorados', 4),
+
+        -- Compras 10 a 15: Natal
+    ('2025-12-18', '2025-12-23', 'Cesta matinal', 'Natal', 6),
+    ('2025-12-19', '2025-12-23', 'Caixa de presente', 'Natal', 7),
+    ('2025-12-20', '2025-12-24', 'Cesta matinal', 'Natal', 8),
+    ('2025-12-21', '2025-12-24', 'Caixa de presente', 'Natal', 9),
+    ('2025-12-22', '2025-12-24', 'Cesta matinal', 'Natal', 10),
+    ('2025-12-22', '2025-12-25', 'Caixa de presente', 'Natal', 11),
+
+    -- Compras 16 a 21: Dia dos Namorados
+    ('2026-06-07', '2026-06-11', 'Cesta matinal', 'Dia dos Namorados', 12),
+    ('2026-06-08', '2026-06-11', 'Caixa de presente', 'Dia dos Namorados', 13),
+    ('2026-06-08', '2026-06-12', 'Cesta matinal', 'Dia dos Namorados', 14),
+    ('2026-06-09', '2026-06-12', 'Caixa de presente', 'Dia dos Namorados', 15),
+    ('2026-06-10', '2026-06-12', 'Cesta matinal', 'Dia dos Namorados', 16),
+    ('2026-06-11', '2026-06-12', 'Caixa de presente', 'Dia dos Namorados', 17),
+
+    -- Compras 22 a 34: Normal
+    ('2026-10-05', '2026-10-06', 'Cesta matinal', 'Normal', 18),
+    ('2026-10-07', '2026-10-09', 'Caixa de presente', 'Normal', 19),
+    ('2026-10-12', '2026-10-13', 'Cesta matinal', 'Normal', 20),
+    ('2026-10-15', '2026-10-17', 'Caixa de presente', 'Normal', 21),
+    ('2026-10-21', '2026-10-22', 'Cesta matinal', 'Normal', 22),
+    ('2026-10-26', '2026-10-28', 'Caixa de presente', 'Normal', 23),
+    ('2026-11-02', '2026-11-03', 'Cesta matinal', 'Normal', 24),
+    ('2026-11-04', '2026-11-06', 'Caixa de presente', 'Normal', 25),
+    ('2026-11-09', '2026-11-10', 'Cesta matinal', 'Normal', 26),
+    ('2026-11-13', '2026-11-15', 'Caixa de presente', 'Normal', 27),
+    ('2026-11-18', '2026-11-19', 'Cesta matinal', 'Normal', 28),
+    ('2026-11-21', NULL, 'Caixa de presente', 'Normal', 29),
+    ('2026-11-23', NULL, 'Cesta matinal', 'Normal', 30);
 
 INSERT INTO tema (nome)
 VALUES
@@ -23,59 +83,98 @@ VALUES
 
 INSERT INTO questao (enunciado, tipo, id_tema)
 VALUES
+    -- Questões iniciais (1 ~ 6)
     ('Como você avalia o atendimento durante a compra?', 'escala', 1),
     ('Como você avalia a pontualidade da entrega?', 'escala', 2),
     ('Como você avalia a apresentação da encomenda?', 'escala', 3),
     ('Como você avalia a qualidade dos produtos?', 'escala', 4),
     ('O que podemos melhorar no atendimento?', 'texto_livre', 1),
-    ('Você tem alguma sugestão sobre a entrega?', 'texto_livre', 2);
+    ('Você tem alguma sugestão sobre a entrega?', 'texto_livre', 2),
 
-INSERT INTO questionario (titulo, descricao, data_criacao, categoria)
+    -- Atendimento (7 ~ 12)
+    ('Como você avalia a clareza das informações antes da compra?', 'escala', 1),
+    ('Como você avalia a rapidez no retorno às suas dúvidas?', 'escala', 1),
+    ('Como você avalia a facilidade de fazer o pedido?', 'escala', 1),
+    ('Como você avalia o atendimento ao solicitar uma personalização?', 'escala', 1),
+    ('Que informação teria ajudado você a escolher o presente?', 'texto_livre', 1),
+    ('Como foi a comunicação com a loja depois da confirmação do pedido?', 'texto_livre', 1),
+
+    -- Entrega (13 ~ 18)
+    ('Como você avalia a facilidade de combinar o horário da entrega?', 'escala', 2),
+    ('Como você avalia as condições da encomenda ao chegar?', 'escala', 2),
+    ('Como você avalia a comunicação sobre o andamento da entrega?', 'escala', 2),
+    ('Como você avalia o cuidado da equipe na entrega do presente?', 'escala', 2),
+    ('Que informação você gostaria de receber no dia da entrega?', 'texto_livre', 2),
+    ('Como foi a experiência de receber a encomenda?', 'texto_livre', 2),
+
+    -- Apresentação (19 ~ 24)
+    ('Como você avalia a organização dos itens dentro da cesta?', 'escala', 3),
+    ('Como você avalia o acabamento da embalagem da cesta?', 'escala', 3),
+    ('Como você avalia a organização dos itens dentro da caixa de presente?', 'escala', 3),
+    ('Como você avalia a apresentação da caixa para presentear?', 'escala', 3),
+    ('O que você mudaria na apresentação da cesta?', 'texto_livre', 3),
+    ('O que você mudaria na embalagem da caixa de presente?', 'texto_livre', 3),
+
+    -- Qualidade dos produtos (25 ~ 30)
+    ('Como você avalia o frescor dos alimentos da cesta?', 'escala', 4),
+    ('Como você avalia a variedade dos itens da cesta?', 'escala', 4),
+    ('Como você avalia a seleção de produtos da caixa de presente?', 'escala', 4),
+    ('Como você avalia a combinação dos itens da caixa?', 'escala', 4),
+    ('Que item você gostaria de encontrar em uma próxima cesta?', 'texto_livre', 4),
+    ('Que produto você gostaria de encontrar em uma próxima caixa de presente?', 'texto_livre', 4),
+
+    -- Natal (questões 31 a 33)
+    ('Como você avalia a variedade de produtos natalinos na encomenda?', 'escala', 4),
+    ('Como você avalia os detalhes natalinos da embalagem?', 'escala', 3),
+    ('Que produto você gostaria de encontrar em uma próxima edição de Natal?', 'texto_livre', 4),
+
+    -- Dia dos Namorados (questões 34 a 36)
+    ('Como você avalia a decoração da encomenda para o Dia dos Namorados?', 'escala', 3),
+    ('Quanto a seleção de produtos combinou com o presente que você queria dar?', 'escala', 4),
+    ('Que opção de personalização você gostaria de ter para o Dia dos Namorados?', 'texto_livre', 1);
+
+INSERT INTO questionario (titulo, descricao, data_criacao, categoria, ocasiao)
 VALUES
     ('Satisfação - cestas matinais',
-     'Pesquisa sobre a experiência de compra e entrega de cestas matinais.',
-     '2026-10-01', 'Cesta matinal'),
+     'Pesquisa de satisfação sobre atendimento, entrega, apresentação e qualidade dos produtos da cesta matinal.',
+     '2026-10-01', 'Cesta matinal', 'Normal'),
+
     ('Satisfação - caixas de presente',
-     'Pesquisa sobre a experiência de compra e entrega de caixas de presente.',
-     '2026-10-01', 'Caixa de presente');
+     'Pesquisa de satisfação sobre atendimento, entrega, apresentação e qualidade dos produtos da caixa de presente.',
+     '2026-10-01', 'Caixa de presente', 'Normal'),
+
+    ('Satisfação - cestas matinais de Natal',
+     'Pesquisa de satisfação sobre atendimento, entrega, apresentação e qualidade dos produtos da cesta matinal de Natal.',
+     '2026-10-01', 'Cesta matinal', 'Natal'),
+
+    ('Satisfação - caixas de presente de Natal',
+     'Pesquisa de satisfação sobre atendimento, entrega, apresentação e qualidade dos produtos da caixa de presente de Natal.',
+     '2026-10-01', 'Caixa de presente', 'Natal'),
+
+    ('Satisfação - cestas matinais de Dia dos Namorados',
+     'Pesquisa de satisfação sobre atendimento, entrega, apresentação e qualidade dos produtos da cesta matinal de Dia dos Namorados.',
+     '2026-10-01', 'Cesta matinal', 'Dia dos Namorados'),
+
+    ('Satisfação - caixas de presente de Dia dos Namorados',
+     'Pesquisa de satisfação sobre atendimento, entrega, apresentação e qualidade dos produtos da caixa de presente de Dia dos Namorados.',
+     '2026-10-01', 'Caixa de presente', 'Dia dos Namorados');
 
 INSERT INTO questionario_questao (id_questionario, id_questao)
 VALUES
-    (1, 1),
-    (1, 2),
-    (1, 3),
-    (1, 4),
-    (1, 5),
-    (2, 1),
-    (2, 2),
-    (2, 3),
-    (2, 4),
-    (2, 6);
+    -- 1 - Cesta matinal normal
+    (1, 1), (1, 2), (1, 3), (1, 4), (1, 5),
 
-INSERT INTO avaliacao (data_envio, data_conclusao, id_compra, id_questionario)
-VALUES
-    ('2026-10-04 14:00', '2026-10-04 19:30', 1, 1),
-    ('2026-10-12 14:00', '2026-10-13 10:15', 2, 2),
-    ('2026-11-06 14:00', '2026-11-07 09:20', 3, 2),
-    ('2026-11-14 14:00', NULL,                4, 1);
+    -- 2 - Caixa de presente normal
+    (2, 1), (2, 2), (2, 3), (2, 4), (2, 6),
 
-INSERT INTO resposta (codigo_avaliacao, id_questao, nota, comentario)
-SELECT a.codigo_avaliacao, r.id_questao, r.nota, r.comentario
-FROM (VALUES
-    (1, 1, 5, NULL),
-    (1, 2, 4, NULL),
-    (1, 3, 5, NULL),
-    (1, 4, 5, NULL),
-    (1, 5, NULL, 'Seria bom confirmar o horário da entrega.'),
-    (2, 1, 4, NULL),
-    (2, 2, 3, NULL),
-    (2, 3, 5, NULL),
-    (2, 4, 4, NULL),
-    (2, 6, NULL, 'Gostaria de receber um aviso quando o pedido saísse.'),
-    (3, 1, 5, NULL),
-    (3, 2, 5, NULL),
-    (3, 3, 4, NULL),
-    (3, 4, 5, NULL),
-    (3, 6, NULL, 'A entrega chegou no horário combinado.')
-) AS r(id_compra, id_questao, nota, comentario)
-JOIN avaliacao a ON a.id_compra = r.id_compra;
+    -- 3 - Cesta matinal de Natal
+    (3, 1), (3, 2), (3, 3), (3, 4), (3, 31), (3, 32), (3, 33),
+
+    -- 4 - Caixa de presente de Natal
+    (4, 1), (4, 2), (4, 3), (4, 4), (4, 31), (4, 32), (4, 33),
+
+    -- 5 - Cesta matinal de Dia dos Namorados
+    (5, 1), (5, 2), (5, 3), (5, 4), (5, 34), (5, 35), (5, 36),
+
+    -- 6 - Caixa de presente de Dia dos Namorados
+    (6, 1), (6, 2), (6, 3), (6, 4), (6, 34), (6, 35), (6, 36);
