@@ -25,8 +25,8 @@ CREATE TABLE questionario (
 
 CREATE TABLE avaliacao (
     codigo_avaliacao UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    data_envio TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    data_conclusao TIMESTAMP,
+    data_envio DATE NOT NULL DEFAULT CURRENT_DATE,
+    data_conclusao DATE,
     id_compra INTEGER NOT NULL UNIQUE REFERENCES compra(id_compra),
     id_questionario INTEGER NOT NULL REFERENCES questionario(id_questionario)
 );

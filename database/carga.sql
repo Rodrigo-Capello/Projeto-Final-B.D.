@@ -105,7 +105,7 @@ VALUES
     ('Como você avalia a comunicação sobre o andamento da entrega?', 'escala', 2),
     ('Como você avalia o cuidado da equipe na entrega do presente?', 'escala', 2),
     ('Que informação você gostaria de receber no dia da entrega?', 'texto_livre', 2),
-    ('Como foi a experiência de receber a encomenda?', 'texto_livre', 2),
+    ('Como foi a experiência ao acompanhar a entrega da encomenda?', 'texto_livre', 2),
 
     -- Apresentação (19 ~ 24)
     ('Como você avalia a organização dos itens dentro da cesta?', 'escala', 3),
@@ -137,44 +137,87 @@ INSERT INTO questionario (titulo, descricao, data_criacao, categoria, ocasiao)
 VALUES
     ('Satisfação - cestas matinais',
      'Pesquisa de satisfação sobre atendimento, entrega, apresentação e qualidade dos produtos da cesta matinal.',
-     '2026-10-01', 'Cesta matinal', 'Normal'),
+     '2024-10-01', 'Cesta matinal', 'Normal'),
 
     ('Satisfação - caixas de presente',
      'Pesquisa de satisfação sobre atendimento, entrega, apresentação e qualidade dos produtos da caixa de presente.',
-     '2026-10-01', 'Caixa de presente', 'Normal'),
+     '2024-10-01', 'Caixa de presente', 'Normal'),
 
     ('Satisfação - cestas matinais de Natal',
      'Pesquisa de satisfação sobre atendimento, entrega, apresentação e qualidade dos produtos da cesta matinal de Natal.',
-     '2026-10-01', 'Cesta matinal', 'Natal'),
+     '2025-11-01', 'Cesta matinal', 'Natal'),
 
     ('Satisfação - caixas de presente de Natal',
      'Pesquisa de satisfação sobre atendimento, entrega, apresentação e qualidade dos produtos da caixa de presente de Natal.',
-     '2026-10-01', 'Caixa de presente', 'Natal'),
+     '2025-11-01', 'Caixa de presente', 'Natal'),
 
     ('Satisfação - cestas matinais de Dia dos Namorados',
      'Pesquisa de satisfação sobre atendimento, entrega, apresentação e qualidade dos produtos da cesta matinal de Dia dos Namorados.',
-     '2026-10-01', 'Cesta matinal', 'Dia dos Namorados'),
+     '2025-05-01', 'Cesta matinal', 'Dia dos Namorados'),
 
     ('Satisfação - caixas de presente de Dia dos Namorados',
      'Pesquisa de satisfação sobre atendimento, entrega, apresentação e qualidade dos produtos da caixa de presente de Dia dos Namorados.',
-     '2026-10-01', 'Caixa de presente', 'Dia dos Namorados');
+     '2025-05-01', 'Caixa de presente', 'Dia dos Namorados');
 
 INSERT INTO questionario_questao (id_questionario, id_questao)
 VALUES
     -- 1 - Cesta matinal normal
-    (1, 1), (1, 2), (1, 3), (1, 4), (1, 5),
+    (1, 1), (1, 2), (1, 3), (1, 4),
+    (1, 5), (1, 7), (1, 18), (1, 25),
 
     -- 2 - Caixa de presente normal
-    (2, 1), (2, 2), (2, 3), (2, 4), (2, 6),
+    (2, 1), (2, 2), (2, 3), (2, 4),
+    (2, 6), (2, 9), (2, 18), (2, 27),
 
     -- 3 - Cesta matinal de Natal
-    (3, 1), (3, 2), (3, 3), (3, 4), (3, 31), (3, 32), (3, 33),
+    (3, 1), (3, 2), (3, 3), (3, 4),
+    (3, 13), (3, 20), (3, 26), (3, 31), (3, 32), (3, 33),
 
     -- 4 - Caixa de presente de Natal
-    (4, 1), (4, 2), (4, 3), (4, 4), (4, 31), (4, 32), (4, 33),
+    (4, 1), (4, 2), (4, 3), (4, 4),
+    (4, 14), (4, 22), (4, 28), (4, 31), (4, 32), (4, 33),
 
     -- 5 - Cesta matinal de Dia dos Namorados
-    (5, 1), (5, 2), (5, 3), (5, 4), (5, 34), (5, 35), (5, 36),
+    (5, 1), (5, 2), (5, 3), (5, 4),
+    (5, 8), (5, 15), (5, 19), (5, 34), (5, 35), (5, 36),
 
     -- 6 - Caixa de presente de Dia dos Namorados
-    (6, 1), (6, 2), (6, 3), (6, 4), (6, 34), (6, 35), (6, 36);
+    (6, 1), (6, 2), (6, 3), (6, 4),
+    (6, 16), (6, 21), (6, 28), (6, 34), (6, 35), (6, 36);
+
+INSERT INTO avaliacao (data_envio, data_conclusao, id_compra, id_questionario)
+SELECT
+    c.data_entrega,
+    CASE
+        WHEN c.id_compra IN (4, 15, 21, 32) THEN NULL
+        ELSE c.data_entrega + 1
+    END,
+    c.id_compra,
+    q.id_questionario
+FROM compra c
+JOIN questionario q
+    ON q.categoria = c.categoria
+   AND q.ocasiao = c.ocasiao
+WHERE c.data_entrega IS NOT NULL;
+
+INSERT INTO resposta (codigo_avaliacao, id_questao, nota, comentario)
+SELECT
+    a.codigo_avaliacao,
+    q.id_questao,
+    CASE 
+        WHEN q.tipo = 'escala' THEN random(1, 5)
+        END,
+    CASE
+        WHEN q.tipo = 'texto_livre' THEN
+            CASE q.id_questao
+                WHEN 5 THEN 'Seria bom receber a confirmação do pedido mais cedo.'
+                WHEN 6 THEN 'Gostaria de receber uma previsão mais precisa da entrega.'
+                WHEN 18 THEN 'Recebi a confirmação da entrega e a foto de como a encomenda ficou foi um ponto positivo.'
+                WHEN 33 THEN 'Gostaria de encontrar biscoitos natalinos na próxima edição.'
+                WHEN 36 THEN 'Gostaria de poder incluir um cartão com mensagem personalizada.'                
+            END
+    END
+FROM avaliacao a
+JOIN questionario_questao qq ON qq.id_questionario = a.id_questionario
+JOIN questao q ON q.id_questao = qq.id_questao
+WHERE a.data_conclusao IS NOT NULL;
