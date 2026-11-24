@@ -33,46 +33,46 @@ VALUES
 
 INSERT INTO compra (data_compra, data_entrega, categoria, ocasiao, id_cliente)
 VALUES
-    ('2026-10-03', '2026-10-04', 'Cesta matinal', 'Normal', 1),
-    ('2026-10-10', '2026-10-12', 'Caixa de presente', 'Normal', 2),
-    ('2026-11-05', '2026-11-06', 'Caixa de presente', 'Normal', 1),
-    ('2026-11-12', '2026-11-14', 'Cesta matinal', 'Normal', 3),
-    ('2026-11-23', NULL, 'Cesta matinal', 'Normal', 4),
-    ('2025-12-20', '2025-12-24', 'Cesta matinal', 'Natal', 2),
-    ('2025-12-21', '2025-12-24', 'Caixa de presente', 'Natal', 5),
-    ('2026-06-08', '2026-06-12', 'Cesta matinal', 'Dia dos Namorados', 3),
-    ('2026-06-09', '2026-06-12', 'Caixa de presente', 'Dia dos Namorados', 4),
+    ('2026-10-02', '2026-10-05', 'Cesta matinal', 'Normal', 1),
+    ('2026-10-08', '2026-10-13', 'Caixa de presente', 'Normal', 2),
+    ('2026-11-03', '2026-11-05', 'Caixa de presente', 'Normal', 1),
+    ('2026-11-09', '2026-11-15', 'Cesta matinal', 'Normal', 3),
+    ('2026-11-22', NULL, 'Cesta matinal', 'Normal', 4),
+    ('2025-12-07', '2025-12-23', 'Cesta matinal', 'Natal', 2),
+    ('2025-12-13', '2025-12-23', 'Caixa de presente', 'Natal', 5),
+    ('2026-06-03', '2026-06-11', 'Cesta matinal', 'Dia dos Namorados', 3),
+    ('2026-06-06', '2026-06-11', 'Caixa de presente', 'Dia dos Namorados', 4),
 
-        -- Compras 10 a 15: Natal
-    ('2025-12-18', '2025-12-23', 'Cesta matinal', 'Natal', 6),
-    ('2025-12-19', '2025-12-23', 'Caixa de presente', 'Natal', 7),
-    ('2025-12-20', '2025-12-24', 'Cesta matinal', 'Natal', 8),
-    ('2025-12-21', '2025-12-24', 'Caixa de presente', 'Natal', 9),
-    ('2025-12-22', '2025-12-24', 'Cesta matinal', 'Natal', 10),
-    ('2025-12-22', '2025-12-25', 'Caixa de presente', 'Natal', 11),
+    -- Compras 10 a 15: Natal
+    ('2025-12-01', '2025-12-22', 'Cesta matinal', 'Natal', 6),
+    ('2025-12-11', '2025-12-24', 'Caixa de presente', 'Natal', 7),
+    ('2025-12-05', '2025-12-23', 'Cesta matinal', 'Natal', 8),
+    ('2025-12-15', '2025-12-23', 'Caixa de presente', 'Natal', 9),
+    ('2025-12-08', '2025-12-23', 'Cesta matinal', 'Natal', 10),
+    ('2025-12-12', '2025-12-24', 'Caixa de presente', 'Natal', 11),
 
     -- Compras 16 a 21: Dia dos Namorados
-    ('2026-06-07', '2026-06-11', 'Cesta matinal', 'Dia dos Namorados', 12),
-    ('2026-06-08', '2026-06-11', 'Caixa de presente', 'Dia dos Namorados', 13),
-    ('2026-06-08', '2026-06-12', 'Cesta matinal', 'Dia dos Namorados', 14),
-    ('2026-06-09', '2026-06-12', 'Caixa de presente', 'Dia dos Namorados', 15),
-    ('2026-06-10', '2026-06-12', 'Cesta matinal', 'Dia dos Namorados', 16),
-    ('2026-06-11', '2026-06-12', 'Caixa de presente', 'Dia dos Namorados', 17),
+    ('2026-06-01', '2026-06-12', 'Cesta matinal', 'Dia dos Namorados', 12),
+    ('2026-06-05', '2026-06-12', 'Caixa de presente', 'Dia dos Namorados', 13),
+    ('2026-06-02', '2026-06-11', 'Cesta matinal', 'Dia dos Namorados', 14),
+    ('2026-06-05', '2026-06-11', 'Caixa de presente', 'Dia dos Namorados', 15),
+    ('2026-05-30', '2026-06-11', 'Cesta matinal', 'Dia dos Namorados', 16),
+    ('2026-06-03', '2026-06-11', 'Caixa de presente', 'Dia dos Namorados', 17),
 
     -- Compras 22 a 34: Normal
-    ('2026-10-05', '2026-10-06', 'Cesta matinal', 'Normal', 18),
-    ('2026-10-07', '2026-10-09', 'Caixa de presente', 'Normal', 19),
-    ('2026-10-12', '2026-10-13', 'Cesta matinal', 'Normal', 20),
-    ('2026-10-15', '2026-10-17', 'Caixa de presente', 'Normal', 21),
-    ('2026-10-21', '2026-10-22', 'Cesta matinal', 'Normal', 22),
-    ('2026-10-26', '2026-10-28', 'Caixa de presente', 'Normal', 23),
-    ('2026-11-02', '2026-11-03', 'Cesta matinal', 'Normal', 24),
-    ('2026-11-04', '2026-11-06', 'Caixa de presente', 'Normal', 25),
-    ('2026-11-09', '2026-11-10', 'Cesta matinal', 'Normal', 26),
-    ('2026-11-13', '2026-11-15', 'Caixa de presente', 'Normal', 27),
-    ('2026-11-18', '2026-11-19', 'Cesta matinal', 'Normal', 28),
-    ('2026-11-21', NULL, 'Caixa de presente', 'Normal', 29),
-    ('2026-11-23', NULL, 'Cesta matinal', 'Normal', 30);
+    ('2026-10-03', '2026-10-07', 'Cesta matinal', 'Normal', 18),
+    ('2026-10-07', '2026-10-10', 'Caixa de presente', 'Normal', 19),
+    ('2026-10-07', '2026-10-14', 'Cesta matinal', 'Normal', 20),
+    ('2026-10-14', '2026-10-18', 'Caixa de presente', 'Normal', 21),
+    ('2026-10-18', '2026-10-23', 'Cesta matinal', 'Normal', 22),
+    ('2026-10-27', '2026-10-29', 'Caixa de presente', 'Normal', 23),
+    ('2026-10-29', '2026-11-04', 'Cesta matinal', 'Normal', 24),
+    ('2026-11-02', '2026-11-05', 'Caixa de presente', 'Normal', 25),
+    ('2026-11-06', '2026-11-11', 'Cesta matinal', 'Normal', 26),
+    ('2026-11-12', '2026-11-16', 'Caixa de presente', 'Normal', 27),
+    ('2026-11-17', '2026-11-19', 'Cesta matinal', 'Normal', 28),
+    ('2026-11-20', NULL, 'Caixa de presente', 'Normal', 29),
+    ('2026-11-24', NULL, 'Cesta matinal', 'Normal', 30);
 
 INSERT INTO tema (nome)
 VALUES
