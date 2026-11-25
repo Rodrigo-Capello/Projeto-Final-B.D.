@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Satisfação por tema e ocasião</title>
+</head>
+<body>
+    <h1>Satisfação por tema e ocasião</h1>
+    <p><a th:href="@{/relatorios}">Voltar ao menu</a></p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Ocasião</th>
+                <th>Tema</th>
+                <th>Quantidade de notas</th>
+                <th>Nota média</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="linha : ${satisfacaoPorTema}">
+                <td th:text="${linha.ocasiao()}"></td>
+                <td th:text="${linha.tema()}"></td>
+                <td th:text="${linha.quantidadeNotas()}"></td>
+                <td th:text="${linha.notaMedia()}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <figure th:if="${!satisfacaoPorTema.isEmpty()}">
+        <figcaption>Nota média por tema e ocasião (de 0 a 5)</figcaption>
+        <ul>
+            <li th:each="linha : ${satisfacaoPorTema}">
+                <label>
+                    <span th:text="|${linha.ocasiao()} — ${linha.tema()}|"></span>
+                    <meter min="0" max="5" th:value="${linha.notaMedia()}"></meter>
+                </label>
+                <span th:text="${linha.notaMedia()}"></span>
+            </li>
+        </ul>
+    </figure>
+</body>
+</html>

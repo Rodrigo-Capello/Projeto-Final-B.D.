@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Tempo entre compra e entrega por ocasião</title>
+</head>
+<body>
+    <h1>Tempo entre compra e entrega por ocasião</h1>
+    <p><a th:href="@{/relatorios}">Voltar ao menu</a></p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Ocasião</th>
+                <th>Compras entregues</th>
+                <th>Intervalo médio (dias)</th>
+                <th>Maior intervalo (dias)</th>
+                <th>Diferença da média geral (dias)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="linha : ${temposEntrega}">
+                <td th:text="${linha.ocasiao()}"></td>
+                <td th:text="${linha.comprasEntregues()}"></td>
+                <td th:text="${linha.intervaloMedioDias()}"></td>
+                <td th:text="${linha.maiorIntervaloDias()}"></td>
+                <td th:text="${linha.diferencaDaMediaGeralDias()}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <figure th:if="${!temposEntrega.isEmpty()}">
+        <figcaption>Intervalo médio entre compra e entrega (dias)</figcaption>
+        <ul>
+            <li th:each="linha : ${temposEntrega}">
+                <label>
+                    <span th:text="${linha.ocasiao()}"></span>
+                    <meter min="0"
+                        th:max="${limiteGrafico}"
+                        th:value="${linha.intervaloMedioDias()}"></meter>
+                </label>
+                <span th:text="|${linha.intervaloMedioDias()} dias|"></span>
+            </li>
+        </ul>
+    </figure>
+</body>
+</html>

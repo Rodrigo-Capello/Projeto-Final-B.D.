@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Relatórios de satisfação</title>
+</head>
+<body>
+    <h1>Relatórios de satisfação</h1>
+    <p><a th:href="@{/relatorios}">Voltar ao menu</a></p>
+
+    <h2>Taxa de conclusão por categoria e ocasião</h2>
+        <form th:action="@{/relatorios/conclusao}" method="get">
+            <label>
+                <input type="checkbox" name="apenasPendentes" value="true"
+                    th:checked="${apenasPendentes}">
+                Mostrar apenas grupos com avaliações pendentes
+            </label>
+            <button type="submit">Aplicar filtro</button>
+        </form>
+    <table>
+        <thead>
+            <tr>
+                <th>Categoria</th>
+                <th>Ocasião</th>
+                <th>Enviadas</th>
+                <th>Concluídas</th>
+                <th>Taxa de conclusão (%)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="taxa : ${taxas}">
+                <td th:text="${taxa.categoria()}"></td>
+                <td th:text="${taxa.ocasiao()}"></td>
+                <td th:text="${taxa.enviadas()}"></td>
+                <td th:text="${taxa.concluidas()}"></td>
+                <td th:text="${taxa.percentual()}"></td>
+            </tr>
+        </tbody>
+    </table>
+    <figure th:if="${!taxas.isEmpty()}">
+        <figcaption>Taxa de conclusão por grupo (%)</figcaption>
+
+        <ul>
+            <li th:each="taxa : ${taxas}">
+                <label>
+                    <span th:text="|${taxa.categoria()} — ${taxa.ocasiao()}|"></span>
+                    <meter min="0" max="100" th:value="${taxa.percentual()}"></meter>
+                </label>
+                <span th:text="|${taxa.percentual()}%|"></span>
+            </li>
+        </ul>
+    </figure>
+</body>
+</html>
