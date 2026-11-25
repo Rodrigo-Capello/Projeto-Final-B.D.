@@ -79,4 +79,28 @@ public class AvaliacaoController {
 
         return "redirect:/avaliacoes/" + codigoDaUrl;
     }
-}
+
+    @GetMapping("/avaliacoes/nova")
+    public String exibirFormularioGeracao(Model model) throws SQLException {
+        model.addAttribute("compras", avaliacaoDao.listarComprasElegiveis());
+        return "avaliacao-nova";
+    }
+
+    @PostMapping("/avaliacoes/nova")
+    public String gerarAvaliacao(
+        @RequestParam("idCompra") int idCompra,
+        RedirectAttributes redirectAttributes
+    ) throws SQLException {
+        UUID codigoGerado = avaliacaoDao.gerarAvaliacao(idCompra);
+
+        if (codigoGerado == null) {
+            redirectAttributes.addFlashAttribute(
+                "erro", "Essa compra não está disponível para gerar uma avaliação."
+            );
+        } else {
+            redirectAttributes.addFlashAttribute("codigoGerado", codigoGerado);
+        }
+
+        return "redirect:/avaliacoes/nova";
+    }
+    }

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cadastrar questão</title>
+</head>
+<body>
+    <h1>Cadastrar questão</h1>
+
+    <p th:if="${mensagem}" th:text="${mensagem}" role="status"></p>
+    <p th:if="${erro}" th:text="${erro}" role="alert"></p>
+
+    <form th:action="@{/questoes/nova}" method="post">
+        <p>
+            <label for="enunciado">Enunciado</label>
+            <textarea id="enunciado" name="enunciado" rows="3" required></textarea>
+        </p>
+
+        <p>
+            <label for="tipo">Tipo</label>
+            <select id="tipo" name="tipo" required>
+                <option value="">Selecione o tipo</option>
+                <option value="escala">Escala de 1 a 5</option>
+                <option value="texto_livre">Texto livre</option>
+            </select>
+        </p>
+
+        <p>
+            <label for="idTema">Tema</label>
+            <select id="idTema" name="idTema" required>
+                <option value="">Selecione o tema</option>
+                <option th:each="tema : ${temas}"
+                        th:value="${tema.id()}"
+                        th:text="${tema.nome()}"></option>
+            </select>
+        </p>
+
+        <button type="submit">Cadastrar questão</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Vincular questão ao questionário</title>
+</head>
+<body>
+    <h1>Vincular questão ao questionário</h1>
+
+    <p th:if="${mensagem}" th:text="${mensagem}" role="status"></p>
+    <p th:if="${erro}" th:text="${erro}" role="alert"></p>
+
+    <form th:action="@{/questoes/vincular}" method="post">
+        <p>
+            <label for="idQuestionario">Questionário</label>
+            <select id="idQuestionario" name="idQuestionario" required>
+                <option value="">Selecione o questionário</option>
+                <option th:each="questionario : ${questionarios}"
+                        th:value="${questionario.id()}"
+                        th:text="${questionario.titulo()}"></option>
+            </select>
+        </p>
+
+        <p>
+            <label for="idQuestao">Questão</label>
+            <select id="idQuestao" name="idQuestao" required>
+                <option value="">Selecione a questão</option>
+                <option th:each="questao : ${questoes}"
+                        th:value="${questao.id()}"
+                        th:text="|${questao.tema()} — ${questao.enunciado()}|"></option>
+            </select>
+        </p>
+
+        <button type="submit">Vincular questão</button>
+    </form>
+</body>
+</html>

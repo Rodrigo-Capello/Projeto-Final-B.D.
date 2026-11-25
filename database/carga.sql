@@ -79,7 +79,8 @@ VALUES
     ('Atendimento'),
     ('Entrega'),
     ('Apresentação'),
-    ('Qualidade dos produtos');
+    ('Qualidade dos produtos'),
+    ('Outro');
 
 INSERT INTO questao (enunciado, tipo, id_tema)
 VALUES

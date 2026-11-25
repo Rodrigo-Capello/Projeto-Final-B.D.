@@ -1,6 +1,7 @@
 package uel.ProjetoFinalBD.dao;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -92,5 +93,77 @@ public class AvaliacaoDao {
                 throw e;
             }
         }
+    }
+
+    public UUID gerarAvaliacao(int idCompra) throws SQLException {
+        String sql = """
+            INSERT INTO avaliacao (id_compra, id_questionario, data_envio)
+            SELECT c.id_compra, q.id_questionario, CURRENT_DATE
+            FROM compra c
+            JOIN questionario q
+            ON q.categoria = c.categoria
+            AND q.ocasiao = c.ocasiao
+            WHERE c.id_compra = ?
+            AND c.data_entrega IS NOT NULL
+            ON CONFLICT (id_compra) DO NOTHING
+            RETURNING codigo_avaliacao
+            """;
+
+        try (
+            var conexao = Conexao.abrir();
+            var comando = conexao.prepareStatement(sql)
+        ) {
+            comando.setInt(1, idCompra);
+
+            try (var resultado = comando.executeQuery()) {
+                if (resultado.next()) {
+                    return resultado.getObject("codigo_avaliacao", UUID.class);
+                }
+                return null;
+            }
+        }
+    }
+
+    public record CompraElegivel(
+        int id,
+        String categoria,
+        String ocasiao,
+        LocalDate dataEntrega
+    ) {}
+
+    public List<CompraElegivel> listarComprasElegiveis() throws SQLException {
+        String sql = """
+            SELECT c.id_compra, c.categoria, c.ocasiao, c.data_entrega
+            FROM compra c
+            JOIN questionario q
+            ON q.categoria = c.categoria
+            AND q.ocasiao = c.ocasiao
+            WHERE c.data_entrega IS NOT NULL
+            AND NOT EXISTS (
+                SELECT 1
+                FROM avaliacao a
+                WHERE a.id_compra = c.id_compra
+            )
+            ORDER BY c.data_entrega DESC, c.id_compra DESC
+            """;
+
+        List<CompraElegivel> compras = new ArrayList<>();
+
+        try (
+            var conexao = Conexao.abrir();
+            var comando = conexao.prepareStatement(sql);
+            var resultado = comando.executeQuery()
+        ) {
+            while (resultado.next()) {
+                compras.add(new CompraElegivel(
+                    resultado.getInt("id_compra"),
+                    resultado.getString("categoria"),
+                    resultado.getString("ocasiao"),
+                    resultado.getObject("data_entrega", LocalDate.class)
+                ));
+            }
+        }
+
+        return compras;
     }
 }

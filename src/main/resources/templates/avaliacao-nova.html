@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gerar avaliação</title>
+</head>
+<body>
+    <h1>Gerar avaliação</h1>
+
+    <p th:if="${erro}" th:text="${erro}" role="alert"></p>
+
+    <p th:if="${codigoGerado}" role="status">
+        Avaliação gerada.
+        <a th:href="@{/avaliacoes/{codigo}(codigo=${codigoGerado})}">
+            Abrir formulário do cliente
+        </a>
+    </p>
+
+    <p th:if="${compras.isEmpty()}">
+        Nenhuma compra entregue está disponível para gerar uma avaliação.
+    </p>
+
+    <form th:unless="${compras.isEmpty()}"
+          th:action="@{/avaliacoes/nova}" method="post">
+        <label for="idCompra">Compra</label>
+        <select id="idCompra" name="idCompra" required>
+            <option value="">Selecione a compra</option>
+            <option th:each="compra : ${compras}"
+                    th:value="${compra.id()}"
+                    th:text="|Compra ${compra.id()} — ${compra.categoria()} — ${compra.ocasiao()} — entrega em ${compra.dataEntrega()}|">
+            </option>
+        </select>
+
+        <button type="submit">Gerar avaliação</button>
+    </form>
+</body>
+</html>
