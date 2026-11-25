@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pesquisa de satisfação</title>
+</head>
+<body>
+    <h1>Pesquisa de satisfação</h1>
+
+    <p th:if="${perguntas.isEmpty()}">Esta avaliação está indisponível.</p>
+
+    <form th:unless="${perguntas.isEmpty()}"
+          th:action="@{/avaliacoes/{codigo}(codigo=${codigoAvaliacao})}"
+          method="post">
+        <fieldset th:each="pergunta : ${perguntas}">
+            <legend th:text="${pergunta.enunciado()}"></legend>
+
+            <label th:if="${pergunta.tipo() == 'escala'}">
+                Nota de 1 a 5
+                <select th:name="|resposta_${pergunta.id()}|" required>
+                    <option value="">Selecione</option>
+                    <option th:each="nota : ${#numbers.sequence(1, 5)}"
+                            th:value="${nota}" th:text="${nota}"></option>
+                </select>
+            </label>
+
+            <label th:if="${pergunta.tipo() == 'texto_livre'}">
+                Comentário
+                <textarea th:name="|resposta_${pergunta.id()}|" rows="3"></textarea>
+            </label>
+        </fieldset>
+    </form>
+</body>
+</html>
