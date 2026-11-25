@@ -4,11 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Pesquisa de satisfação</title>
+
+    <style>
+        .escala-notas {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .escala-notas label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.25rem;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
     <h1>Pesquisa de satisfação</h1>
 
-    <p th:if="${perguntas.isEmpty()}">Esta avaliação está indisponível.</p>
+    <p th:if="${enviada}">Obrigado! Sua avaliação foi enviada.</p>
+
+    <p th:if="${perguntas.isEmpty() and enviada != true}">
+        Esta avaliação está indisponível.
+    </p>
+
+    <p th:if="${erro}" th:text="${erro}"></p>
 
     <form th:unless="${perguntas.isEmpty()}"
           th:action="@{/avaliacoes/{codigo}(codigo=${codigoAvaliacao})}"
@@ -16,20 +38,23 @@
         <fieldset th:each="pergunta : ${perguntas}">
             <legend th:text="${pergunta.enunciado()}"></legend>
 
-            <label th:if="${pergunta.tipo() == 'escala'}">
-                Nota de 1 a 5
-                <select th:name="|resposta_${pergunta.id()}|" required>
-                    <option value="">Selecione</option>
-                    <option th:each="nota : ${#numbers.sequence(1, 5)}"
-                            th:value="${nota}" th:text="${nota}"></option>
-                </select>
-            </label>
+            <div class="escala-notas" th:if="${pergunta.tipo() == 'escala'}"
+                th:with="rotulos=${ {'Muito ruim', 'Ruim', 'Regular', 'Bom', 'Muito bom'} }">
+                <label th:each="nota : ${#numbers.sequence(1, 5)}">
+                    <span th:text="|${nota} — ${rotulos[nota - 1]}|"></span>
+                    <input type="radio"
+                        th:name="|resposta_${pergunta.id()}|"
+                        th:value="${nota}"
+                        required>
+                </label>
+            </div>
 
             <label th:if="${pergunta.tipo() == 'texto_livre'}">
                 Comentário
                 <textarea th:name="|resposta_${pergunta.id()}|" rows="3"></textarea>
             </label>
         </fieldset>
+        <button type="submit">Enviar avaliação</button>
     </form>
 </body>
 </html>
