@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/css/estilo.css}">
+    <title>Cadastrar questionário</title>
+</head>
+<body>
+    <main>
+        <h1>Cadastrar questionário</h1>
+
+        <p th:if="${param.sucesso != null}">Questionário cadastrado com sucesso.</p>
+        <p th:if="${erro != null}" th:text="${erro}"></p>
+
+        <form th:action="@{/questionarios/novo}" method="post">
+            <p>
+                <label for="titulo">Título</label><br>
+                <input id="titulo" name="titulo" type="text" required>
+            </p>
+
+            <p>
+                <label for="descricao">Descrição (opcional)</label><br>
+                <textarea id="descricao" name="descricao" rows="3"></textarea>
+            </p>
+
+            <p>
+                <label for="categoria">Categoria</label><br>
+                <select id="categoria" name="categoria" required>
+                    <option value="">Selecione uma categoria</option>
+                    <option>Cesta matinal</option>
+                    <option>Caixa de presente</option>
+                </select>
+            </p>
+
+            <p>
+                <label for="ocasiao">Ocasião</label><br>
+                <select id="ocasiao" name="ocasiao" required>
+                    <option value="">Selecione uma ocasião</option>
+                    <option>Normal</option>
+                    <option>Natal</option>
+                    <option>Dia dos Namorados</option>
+                    <option>Dia dos Pais</option>
+                    <option>Dia das Mães</option>
+                </select>
+            </p>
+
+            <button type="submit" class="botao-menu">Cadastrar questionário</button>
+        </form>
+
+        <p><a th:href="@{/}" class="botao-voltar">Voltar para a página inicial</a></p>
+    </main>
+</body>
+</html>

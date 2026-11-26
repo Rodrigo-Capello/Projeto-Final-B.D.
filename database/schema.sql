@@ -8,7 +8,7 @@ CREATE TABLE compra (
     data_compra DATE NOT NULL,
     data_entrega DATE,
     categoria TEXT NOT NULL,
-    ocasiao TEXT NOT NULL CHECK (ocasiao IN ('Normal', 'Natal', 'Dia dos Namorados')),
+    ocasiao TEXT NOT NULL CHECK (ocasiao IN ('Normal', 'Natal', 'Dia dos Namorados','Dia dos Pais','Dia das Mães')),
     id_cliente INTEGER NOT NULL REFERENCES cliente(id_cliente),
     CHECK (data_entrega >= data_compra)
 );
@@ -19,7 +19,7 @@ CREATE TABLE questionario (
     descricao TEXT,
     data_criacao DATE NOT NULL DEFAULT CURRENT_DATE,
     categoria TEXT NOT NULL CHECK (categoria IN ('Cesta matinal', 'Caixa de presente')),
-    ocasiao TEXT NOT NULL CHECK (ocasiao IN ('Normal', 'Natal', 'Dia dos Namorados')),
+    ocasiao TEXT NOT NULL CHECK (ocasiao IN ('Normal', 'Natal', 'Dia dos Namorados','Dia dos Pais','Dia das Mães')),
     UNIQUE (categoria, ocasiao)
 );
 

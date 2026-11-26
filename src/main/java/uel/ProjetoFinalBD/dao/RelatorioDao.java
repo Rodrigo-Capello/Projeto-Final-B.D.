@@ -23,7 +23,7 @@ public class RelatorioDao {
                 COUNT(a.codigo_avaliacao) AS enviadas,
                 COUNT(a.data_conclusao) AS concluidas,
                 ROUND(
-                    100.0 * COUNT(a.data_conclusao) / COUNT(a.codigo_avaliacao),
+                    100.0 * COUNT(a.data_conclusao) / NULLIF(COUNT(a.codigo_avaliacao), 0),
                     1
                 ) AS percentual
             FROM questionario q

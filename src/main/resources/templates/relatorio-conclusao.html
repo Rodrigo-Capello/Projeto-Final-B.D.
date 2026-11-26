@@ -37,7 +37,7 @@
                 <td th:text="${taxa.ocasiao()}"></td>
                 <td th:text="${taxa.enviadas()}"></td>
                 <td th:text="${taxa.concluidas()}"></td>
-                <td th:text="${taxa.percentual()}"></td>
+                <td th:text="${taxa.percentual() == null ? 'Sem avaliações enviadas' : taxa.percentual()}"></td>
             </tr>
         </tbody>
     </table>
@@ -45,7 +45,7 @@
         <figcaption>Avaliações concluídas e pendentes por grupo</figcaption>
 
         <div class="grade-roscas">
-            <section th:each="taxa : ${taxas}" class="cartao-rosca">
+            <section th:each="taxa : ${taxas}" th:if="${taxa.enviadas() > 0}" class="cartao-rosca">
                 <h3 th:text="|${taxa.categoria()} — ${taxa.ocasiao()}|"></h3>
 
                 <div class="rosca-com-percentual">

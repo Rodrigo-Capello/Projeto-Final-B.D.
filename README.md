@@ -46,7 +46,7 @@ SELECT
     COUNT(a.codigo_avaliacao) AS enviadas,
     COUNT(a.data_conclusao) AS concluidas,
     ROUND(
-        100.0 * COUNT(a.data_conclusao) / COUNT(a.codigo_avaliacao),
+        100.0 * COUNT(a.data_conclusao) / NULLIF(COUNT(a.codigo_avaliacao), 0),
         1
     ) AS percentual
 FROM questionario q
@@ -62,6 +62,7 @@ ORDER BY q.categoria, q.ocasiao;
 - `COUNT` conta as avaliações enviadas e as concluídas em cada grupo. Para as concluídas, entram apenas as que tem datas de conclusão preenchidas.
 - `HAVING` filtra os grupos com taxa de conclusão abaixo de 60%. É aplicado depois do `GROUP BY` para funcionar com as contagens de cada grupo.
 - `ORDER BY` ordena o resultado primeiro por categoria, e depois por ocasião.
+- `NULLIF` transforma o total de avaliações enviadas em `NULL` quando ele é zero para evitar erros por conta de divisão por zero.
 
 No pgAdmin, comente/descomente a linha do `HAVING` para testar o filtro. Na aplicação, o
 botão **Aplicar/Remover filtro** controla essa condição por meio de um parâmetro JDBC.

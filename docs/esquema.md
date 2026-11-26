@@ -3,14 +3,15 @@
 - CLIENTE (**id_cliente**, nome)
 - COMPRA (**id_compra**, data_compra, data_entrega, categoria, ocasiao, id_cliente)
   - `id_cliente` → `CLIENTE(id_cliente)`
-  - `ocasiao` NOT NULL.
+  - `ocasiao` e `id_cliente` NOT NULL.
 - AVALIAÇÃO (**codigo_avaliacao**, data_envio, data_conclusao, id_compra, id_questionario)
   - `id_compra` → `COMPRA(id_compra)`
   - `id_questionario` → `QUESTIONÁRIO(id_questionario)`
   - `id_compra` NOT NULL e UNIQUE
+  - `id_questionario` NOT NULL
 - QUESTIONÁRIO (**id_questionario**, titulo, descricao, data_criacao, categoria, ocasiao)
   - `(categoria, ocasiao)` é uma chave candidata alternativa (UNIQUE).
-  - `ocasiao` NOT NULL.
+  - `ocasiao` e `categoria` NOT NULL.
 - TEMA (**id_tema**, nome)
 - QUESTÃO (**id_questao**, enunciado, tipo, id_tema)
   - `id_tema` → `TEMA(id_tema)`
