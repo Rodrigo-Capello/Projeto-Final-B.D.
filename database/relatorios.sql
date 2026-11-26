@@ -13,7 +13,8 @@ SELECT
 FROM questionario q
 LEFT JOIN avaliacao a ON a.id_questionario = q.id_questionario
 GROUP BY q.categoria, q.ocasiao
---HAVING COUNT(a.codigo_avaliacao) > COUNT(a.data_conclusao)
+-- HAVING 100.0 * COUNT(a.data_conclusao) < 60 * COUNT(a.codigo_avaliacao)
+-- Filtro: taxa de conclusão < 60%
 ORDER BY q.categoria, q.ocasiao;
 
 
@@ -40,15 +41,15 @@ SELECT
     COUNT(*) AS compras_entregues,
     ROUND(AVG(c.data_entrega - c.data_compra), 1) AS intervalo_medio_dias,
     MAX(c.data_entrega - c.data_compra) AS maior_intervalo_dias,
-    ROUND(
-        AVG(c.data_entrega - c.data_compra) - (
-            SELECT AVG(data_entrega - data_compra)
-            FROM compra
-            WHERE data_entrega IS NOT NULL
-        ),
-        1
-    ) AS diferenca_da_media_geral_dias
+    ROUND(AVG(c.data_entrega - c.data_compra) - geral.media, 1)
+        AS diferenca_da_media_geral_dias,
+    ROUND(geral.media, 1) AS media_geral_dias
 FROM compra c
+CROSS JOIN (
+    SELECT AVG(data_entrega - data_compra) AS media
+    FROM compra
+    WHERE data_entrega IS NOT NULL
+) AS geral
 WHERE c.data_entrega IS NOT NULL
-GROUP BY c.ocasiao
+GROUP BY c.ocasiao, geral.media
 ORDER BY c.ocasiao;

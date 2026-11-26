@@ -74,6 +74,75 @@ VALUES
     ('2026-11-20', NULL, 'Caixa de presente', 'Normal', 29),
     ('2026-11-24', NULL, 'Cesta matinal', 'Normal', 30);
 
+INSERT INTO compra (data_compra, data_entrega, categoria, ocasiao, id_cliente)
+VALUES
+    ('2026-10-04', '2026-10-06', 'Cesta matinal', 'Normal', 5),
+    ('2025-12-02', '2025-12-24', 'Caixa de presente', 'Natal', 19),
+    ('2026-06-03', '2026-06-12', 'Cesta matinal', 'Dia dos Namorados', 7),
+    ('2026-10-07', '2026-10-12', 'Caixa de presente', 'Normal', 8),
+    ('2026-11-08', '2026-11-11', 'Cesta matinal', 'Normal', 22),
+    ('2025-12-15', '2025-12-24', 'Cesta matinal', 'Natal', 11),
+    ('2026-05-30', '2026-06-11', 'Caixa de presente', 'Dia dos Namorados', 2),
+    ('2026-11-16', '2026-11-20', 'Caixa de presente', 'Normal', 24),
+    ('2025-12-08', '2025-12-23', 'Caixa de presente', 'Natal', 13),
+    ('2026-10-13', '2026-10-19', 'Cesta matinal', 'Normal', 11),
+    ('2026-06-08', '2026-06-12', 'Cesta matinal', 'Dia dos Namorados', 28),
+    ('2025-11-28', '2025-12-23', 'Cesta matinal', 'Natal', 3),
+    ('2026-10-11', '2026-10-12', 'Caixa de presente', 'Normal', 10),
+    ('2026-11-04', '2026-11-06', 'Cesta matinal', 'Normal', 19),
+    ('2026-06-02', '2026-06-12', 'Caixa de presente', 'Dia dos Namorados', 3),
+    ('2025-12-19', '2025-12-24', 'Caixa de presente', 'Natal', 2),
+    ('2026-11-24', NULL,         'Cesta matinal', 'Normal', 25),
+    ('2026-10-15', '2026-10-19', 'Caixa de presente', 'Normal', 12),
+    ('2025-12-05', '2025-12-22', 'Cesta matinal', 'Natal', 9),
+    ('2026-06-05', '2026-06-11', 'Cesta matinal', 'Dia dos Namorados', 19),
+    ('2026-10-23', '2026-10-28', 'Cesta matinal', 'Normal', 15),
+    ('2025-12-10', '2025-12-24', 'Caixa de presente', 'Natal', 16),
+    ('2026-11-01', '2026-11-04', 'Caixa de presente', 'Normal', 18),
+    ('2026-06-06', '2026-06-11', 'Caixa de presente', 'Dia dos Namorados', 20),
+    ('2026-11-09', '2026-11-16', 'Cesta matinal', 'Normal', 21),
+    ('2025-12-12', '2025-12-24', 'Cesta matinal', 'Natal', 21),
+    ('2026-05-29', '2026-06-10', 'Cesta matinal', 'Dia dos Namorados', 1),
+    ('2026-11-25', NULL,         'Caixa de presente', 'Normal', 26),
+    ('2025-11-30', '2025-12-24', 'Caixa de presente', 'Natal', 4),
+    ('2026-10-08', '2026-10-09', 'Cesta matinal', 'Normal', 9),
+    ('2026-10-25', '2026-10-31', 'Caixa de presente', 'Normal', 16),
+    ('2026-06-09', '2026-06-12', 'Cesta matinal', 'Dia dos Namorados', 30),
+    ('2025-12-17', '2025-12-23', 'Caixa de presente', 'Natal', 28),
+    ('2026-10-30', '2026-11-03', 'Cesta matinal', 'Normal', 17),
+    ('2025-12-21', '2025-12-24', 'Cesta matinal', 'Natal', 1),
+    ('2026-06-04', '2026-06-09', 'Caixa de presente', 'Dia dos Namorados', 14),
+    ('2026-11-12', '2026-11-14', 'Caixa de presente', 'Normal', 22),
+    ('2026-10-16', '2026-10-19', 'Cesta matinal', 'Normal', 13),
+    ('2025-12-06', '2025-12-24', 'Caixa de presente', 'Natal', 10),
+    ('2026-06-01', '2026-06-11', 'Cesta matinal', 'Dia dos Namorados', 7),
+    ('2026-11-17', '2026-11-20', 'Cesta matinal', 'Normal', 23),
+    ('2026-10-20', '2026-10-22', 'Caixa de presente', 'Normal', 14),
+    ('2025-12-11', '2025-12-22', 'Cesta matinal', 'Natal', 18),
+    ('2026-05-28', '2026-06-12', 'Caixa de presente', 'Dia dos Namorados', 5),
+    ('2026-11-23', NULL,         'Cesta matinal', 'Normal', 4),
+    ('2025-12-22', '2025-12-24', 'Caixa de presente', 'Natal', 5),
+    ('2026-06-04', '2026-06-12', 'Cesta matinal', 'Dia dos Namorados', 16),
+    ('2026-11-05', '2026-11-10', 'Caixa de presente', 'Normal', 20),
+    ('2026-10-06', '2026-10-10', 'Cesta matinal', 'Normal', 7),
+    ('2025-12-14', '2025-12-22', 'Caixa de presente', 'Natal', 22),
+    ('2026-06-08', '2026-06-12', 'Caixa de presente', 'Dia dos Namorados', 26),
+    ('2025-12-09', '2025-12-23', 'Cesta matinal', 'Natal', 15),
+    ('2026-10-02', '2026-10-05', 'Caixa de presente', 'Normal', 6),
+    ('2026-11-02', '2026-11-04', 'Cesta matinal', 'Normal', 6),
+    ('2025-12-03', '2025-12-22', 'Caixa de presente', 'Natal', 7),
+    ('2026-06-07', '2026-06-09', 'Cesta matinal', 'Dia dos Namorados', 25),
+    ('2026-10-27', '2026-10-30', 'Cesta matinal', 'Normal', 29),
+    ('2026-11-18', '2026-11-24', 'Caixa de presente', 'Normal', 12),
+    ('2025-12-16', '2025-12-24', 'Cesta matinal', 'Natal', 27),
+    ('2026-11-06', '2026-11-07', 'Cesta matinal', 'Normal', 2),
+    ('2026-06-09', '2026-06-11', 'Caixa de presente', 'Dia dos Namorados', 29),
+    ('2025-12-15', '2025-12-24', 'Caixa de presente', 'Natal', 25),
+    ('2026-10-19', '2026-10-25', 'Cesta matinal', 'Normal', 18),
+    ('2026-11-22', NULL,         'Caixa de presente', 'Normal', 17),
+    ('2026-11-14', '2026-11-17', 'Cesta matinal', 'Normal', 12),
+    ('2025-12-12', '2025-12-23', 'Caixa de presente', 'Natal', 30);
+
 INSERT INTO tema (nome)
 VALUES
     ('Atendimento'),
@@ -188,26 +257,45 @@ VALUES
 
 INSERT INTO avaliacao (data_envio, data_conclusao, id_compra, id_questionario)
 SELECT
-    c.data_entrega,
+    c.data_entrega + 1 AS data_envio,
     CASE
-        WHEN c.id_compra IN (4, 15, 21, 32) THEN NULL
-        ELSE c.data_entrega + 1
-    END,
+        WHEN c.id_compra IN (
+            4, 15, 21, 32,
+            36, 39, 41, 42, 46, 47, 54, 63, 70, 82, 93, 99,
+            40, 43, 50, 53, 56, 60, 67, 73, 77, 80
+        ) THEN NULL
+        ELSE c.data_entrega + 2
+    END AS data_conclusao,
     c.id_compra,
     q.id_questionario
 FROM compra c
 JOIN questionario q
     ON q.categoria = c.categoria
-   AND q.ocasiao = c.ocasiao
-WHERE c.data_entrega IS NOT NULL;
+    AND q.ocasiao = c.ocasiao
+WHERE c.data_entrega IS NOT NULL
+    AND c.id_compra NOT IN (35, 37)
+ORDER BY c.id_compra;
+
+
+-- id.tema: 1-Atendimento, 2-Entrega, 3-Apresentação, 4-Qualidade
+-- id.questionario: 1,2-Normal, 3,4-Natal, 5,6-Dia dos Namorados
 
 INSERT INTO resposta (codigo_avaliacao, id_questao, nota, comentario)
 SELECT
     a.codigo_avaliacao,
     q.id_questao,
-    CASE 
-        WHEN q.tipo = 'escala' THEN random(1, 5)
-        END,
+    CASE
+        WHEN q.tipo = 'escala' THEN
+            CASE
+                WHEN q.id_tema = 3 THEN random(4, 5)
+                WHEN q.id_tema = 4 THEN random(3, 5)
+                WHEN q.id_tema = 1 THEN random(1, 4)
+                WHEN q.id_tema = 2 AND a.id_questionario IN (3, 4)
+                    THEN random(1, 3)
+                WHEN q.id_tema = 2 THEN random(2, 5)
+                ELSE random(1, 5)
+            END
+    END,
     CASE
         WHEN q.tipo = 'texto_livre' THEN
             CASE q.id_questao

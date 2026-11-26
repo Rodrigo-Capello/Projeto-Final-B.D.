@@ -1,6 +1,8 @@
 package uel.ProjetoFinalBD.controller;
 
 import java.sql.SQLException;
+import java.util.LinkedHashMap;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,18 +23,27 @@ public class RelatorioController {
     
     @GetMapping("/relatorios/conclusao")
     public String exibirRelatorios(
-        @RequestParam(name = "apenasPendentes", defaultValue = "false") boolean apenasPendentes,
+        @RequestParam(name = "abaixoDe60", defaultValue = "false") boolean abaixoDe60,
         Model model
     ) throws SQLException {
-        model.addAttribute("taxas", relatorioDao.listarTaxasConclusao(apenasPendentes));
-        model.addAttribute("apenasPendentes", apenasPendentes);
-        model.addAttribute("satisfacaoPorTema", relatorioDao.listarSatisfacaoPorTema());
+        model.addAttribute("taxas", relatorioDao.listarTaxasConclusao(abaixoDe60));
+        model.addAttribute("abaixoDe60", abaixoDe60);
         return "relatorio-conclusao";
     }
 
     @GetMapping("/relatorios/satisfacao")
     public String exibirSatisfacao(Model model) throws SQLException {
-        model.addAttribute("satisfacaoPorTema", relatorioDao.listarSatisfacaoPorTema());
+        var linhas = relatorioDao.listarSatisfacaoPorTema();
+
+        var notasPorTema = linhas.stream()
+            .collect(Collectors.groupingBy(
+                linha -> linha.tema(),
+                LinkedHashMap::new,
+                Collectors.toList()
+            ));
+
+        model.addAttribute("satisfacaoPorTema", linhas);
+        model.addAttribute("notasPorTema", notasPorTema);
         return "relatorio-satisfacao";
     }
 

@@ -3,6 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <title>Satisfação por tema e ocasião</title>
+
+    <style>
+        .grafico-satisfacao { margin: 1.5rem 0; }
+
+        .grupos-satisfacao {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .barras-satisfacao {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .coluna-satisfacao {
+            display: grid;
+            justify-items: center;
+            gap: 0.35rem;
+            width: 5rem;
+            text-align: center;
+        }
+
+        .trilho-satisfacao {
+            display: flex;
+            align-items: flex-end;
+            width: 2rem;
+            height: 8rem;
+            background: #e5e7eb;
+        }
+
+        .barra-satisfacao {
+            width: 100%;
+            background: #2563eb;
+        }
+    </style>
 </head>
 <body>
     <h1>Satisfação por tema e ocasião</h1>
@@ -27,17 +63,25 @@
         </tbody>
     </table>
 
-    <figure th:if="${!satisfacaoPorTema.isEmpty()}">
-        <figcaption>Nota média por tema e ocasião (de 0 a 5)</figcaption>
-        <ul>
-            <li th:each="linha : ${satisfacaoPorTema}">
-                <label>
-                    <span th:text="|${linha.ocasiao()} — ${linha.tema()}|"></span>
-                    <meter min="0" max="5" th:value="${linha.notaMedia()}"></meter>
-                </label>
-                <span th:text="${linha.notaMedia()}"></span>
-            </li>
-        </ul>
+    <figure class="grafico-satisfacao" th:if="${!notasPorTema.isEmpty()}">
+        <figcaption>Nota média por tema e ocasião (escala de 0 a 5)</figcaption>
+
+        <div class="grupos-satisfacao">
+            <section class="grupo-satisfacao" th:each="grupo : ${notasPorTema}">
+                <h3 th:text="${grupo.key}"></h3>
+
+                <div class="barras-satisfacao">
+                    <div class="coluna-satisfacao" th:each="linha : ${grupo.value}">
+                        <strong th:text="${linha.notaMedia()}"></strong>
+                        <div class="trilho-satisfacao" aria-hidden="true">
+                            <div class="barra-satisfacao"
+                                th:style="|height: ${linha.notaMedia() * 20}%;|"></div>
+                        </div>
+                        <span th:text="${linha.ocasiao()}"></span>
+                    </div>
+                </div>
+            </section>
+        </div>
     </figure>
 </body>
 </html>

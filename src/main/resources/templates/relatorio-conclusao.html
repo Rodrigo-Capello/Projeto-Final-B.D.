@@ -10,12 +10,15 @@
 
     <h2>Taxa de conclusão por categoria e ocasião</h2>
         <form th:action="@{/relatorios/conclusao}" method="get">
-            <label>
-                <input type="checkbox" name="apenasPendentes" value="true"
-                    th:checked="${apenasPendentes}">
-                Mostrar apenas grupos com avaliações pendentes
-            </label>
-            <button type="submit">Aplicar filtro</button>
+            <p>Mostrar apenas grupos com taxa de conclusão abaixo de 60%.</p>
+
+            <input th:unless="${abaixoDe60}"
+                type="hidden" name="abaixoDe60" value="true">
+
+            <button type="submit"
+                    th:text="${abaixoDe60} ? 'Remover filtro' : 'Aplicar filtro'">
+                Aplicar filtro
+            </button>
         </form>
     <table>
         <thead>
@@ -38,17 +41,23 @@
         </tbody>
     </table>
     <figure th:if="${!taxas.isEmpty()}">
-        <figcaption>Taxa de conclusão por grupo (%)</figcaption>
+        <figcaption>Avaliações concluídas e pendentes por grupo</figcaption>
 
-        <ul>
-            <li th:each="taxa : ${taxas}">
-                <label>
-                    <span th:text="|${taxa.categoria()} — ${taxa.ocasiao()}|"></span>
-                    <meter min="0" max="100" th:value="${taxa.percentual()}"></meter>
-                </label>
-                <span th:text="|${taxa.percentual()}%|"></span>
-            </li>
-        </ul>
+        <div style="display: flex; flex-wrap: wrap; gap: 1.5rem;">
+            <section th:each="taxa : ${taxas}" style="width: 14rem;">
+                <h3 th:text="|${taxa.categoria()} — ${taxa.ocasiao()}|"></h3>
+
+                <div aria-hidden="true"
+                    th:style="|width: 8rem; height: 8rem; border-radius: 50%; display: grid; place-items: center; background: conic-gradient(#2563eb 0% ${taxa.percentual()}%, #e5e7eb ${taxa.percentual()}% 100%);|">
+                    <div style="width: 5rem; height: 5rem; border-radius: 50%; background: white;"></div>
+                </div>
+
+                <p>
+                    <strong th:text="|${taxa.percentual()}%|"></strong>
+                    <span th:text="| — ${taxa.concluidas()} de ${taxa.enviadas()} concluídas|"></span>
+                </p>
+            </section>
+        </div>
     </figure>
 </body>
 </html>

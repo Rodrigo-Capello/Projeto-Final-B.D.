@@ -3,6 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>Tempo entre compra e entrega por ocasião</title>
+    <style>
+        .barras-entrega {
+            display: grid;
+            gap: 0.15rem;
+        }
+
+        .barras-entrega label {
+            display: grid;
+            grid-template-columns: 9rem minmax(5rem, 12rem) auto;
+            align-items: center;
+            column-gap: 0.5rem;
+        }
+
+        .barras-entrega meter {
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
     <h1>Tempo entre compra e entrega por ocasião</h1>
@@ -31,17 +48,28 @@
 
     <figure th:if="${!temposEntrega.isEmpty()}">
         <figcaption>Intervalo médio entre compra e entrega (dias)</figcaption>
-        <ul>
-            <li th:each="linha : ${temposEntrega}">
+
+        <div th:each="linha : ${temposEntrega}">
+            <h3 th:text="${linha.ocasiao()}"></h3>
+
+            <div class="barras-entrega">
                 <label>
-                    <span th:text="${linha.ocasiao()}"></span>
+                    Média da ocasião
                     <meter min="0"
                         th:max="${limiteGrafico}"
                         th:value="${linha.intervaloMedioDias()}"></meter>
+                    <span th:text="|${linha.intervaloMedioDias()} dias|"></span>
                 </label>
-                <span th:text="|${linha.intervaloMedioDias()} dias|"></span>
-            </li>
-        </ul>
+
+                <label>
+                    Média geral
+                    <meter min="0"
+                        th:max="${limiteGrafico}"
+                        th:value="${linha.mediaGeralDias()}"></meter>
+                    <span th:text="|${linha.mediaGeralDias()} dias|"></span>
+                </label>
+            </div>
+        </div>
     </figure>
 </body>
 </html>

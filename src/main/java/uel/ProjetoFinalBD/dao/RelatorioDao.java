@@ -15,7 +15,7 @@ public class RelatorioDao {
         BigDecimal percentual
     ) {}
 
-    public List<TaxaConclusao> listarTaxasConclusao(boolean apenasPendentes) throws SQLException {
+    public List<TaxaConclusao> listarTaxasConclusao(boolean abaixoDe60) throws SQLException {
         String sql = """
             SELECT
                 q.categoria,
@@ -29,7 +29,7 @@ public class RelatorioDao {
             FROM questionario q
             LEFT JOIN avaliacao a ON a.id_questionario = q.id_questionario
             GROUP BY q.categoria, q.ocasiao
-            HAVING NOT ? OR COUNT(a.codigo_avaliacao) > COUNT(a.data_conclusao)
+            HAVING NOT ? OR 100.0 * COUNT(a.data_conclusao) < 60 * COUNT(a.codigo_avaliacao)
             ORDER BY q.categoria, q.ocasiao
             """;
 
@@ -39,7 +39,7 @@ public class RelatorioDao {
             var conexao = Conexao.abrir();
             var comando = conexao.prepareStatement(sql)
         ) {
-            comando.setBoolean(1, apenasPendentes);
+            comando.setBoolean(1, abaixoDe60);
 
             try (var resultado = comando.executeQuery()) {
                 while (resultado.next()) {
@@ -108,7 +108,8 @@ public class RelatorioDao {
         long comprasEntregues,
         BigDecimal intervaloMedioDias,
         int maiorIntervaloDias,
-        BigDecimal diferencaDaMediaGeralDias
+        BigDecimal diferencaDaMediaGeralDias,
+        BigDecimal mediaGeralDias
     ) {}
 
     public List<TempoEntregaPorOcasião> listarTempoEntregaPorOcasiao() throws SQLException {
@@ -118,17 +119,17 @@ public class RelatorioDao {
                 COUNT(*) AS compras_entregues,
                 ROUND(AVG(c.data_entrega - c.data_compra), 1) AS intervalo_medio_dias,
                 MAX(c.data_entrega - c.data_compra) AS maior_intervalo_dias,
-                ROUND(
-                    AVG(c.data_entrega - c.data_compra) - (
-                        SELECT AVG(data_entrega - data_compra)
-                        FROM compra
-                        WHERE data_entrega IS NOT NULL
-                    ),
-                    1
-                ) AS diferenca_da_media_geral_dias
+                ROUND(AVG(c.data_entrega - c.data_compra) - geral.media, 1)
+                    AS diferenca_da_media_geral_dias,
+                ROUND(geral.media, 1) AS media_geral_dias
             FROM compra c
+            CROSS JOIN (
+                SELECT AVG(data_entrega - data_compra) AS media
+                FROM compra
+                WHERE data_entrega IS NOT NULL
+            ) AS geral
             WHERE c.data_entrega IS NOT NULL
-            GROUP BY c.ocasiao
+            GROUP BY c.ocasiao, geral.media
             ORDER BY c.ocasiao
             """;
 
@@ -145,7 +146,8 @@ public class RelatorioDao {
                     resultado.getLong("compras_entregues"),
                     resultado.getBigDecimal("intervalo_medio_dias"),
                     resultado.getInt("maior_intervalo_dias"),
-                    resultado.getBigDecimal("diferenca_da_media_geral_dias")
+                    resultado.getBigDecimal("diferenca_da_media_geral_dias"),
+                    resultado.getBigDecimal("media_geral_dias")
                 ));
             }
         }
