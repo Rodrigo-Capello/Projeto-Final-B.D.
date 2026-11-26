@@ -2,11 +2,12 @@
 <html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/estilo.css">
     <title>Relatórios de satisfação</title>
 </head>
 <body>
     <h1>Relatórios de satisfação</h1>
-    <p><a th:href="@{/relatorios}">Voltar ao menu</a></p>
+    <p><a th:href="@{/relatorios}" class="botao-voltar">Voltar ao menu</a></p>
 
     <h2>Taxa de conclusão por categoria e ocasião</h2>
         <form th:action="@{/relatorios/conclusao}" method="get">
@@ -20,7 +21,7 @@
                 Aplicar filtro
             </button>
         </form>
-    <table>
+    <table class="tabela-relatorio">
         <thead>
             <tr>
                 <th>Categoria</th>
@@ -43,19 +44,20 @@
     <figure th:if="${!taxas.isEmpty()}">
         <figcaption>Avaliações concluídas e pendentes por grupo</figcaption>
 
-        <div style="display: flex; flex-wrap: wrap; gap: 1.5rem;">
-            <section th:each="taxa : ${taxas}" style="width: 14rem;">
+        <div class="grade-roscas">
+            <section th:each="taxa : ${taxas}" class="cartao-rosca">
                 <h3 th:text="|${taxa.categoria()} — ${taxa.ocasiao()}|"></h3>
 
-                <div aria-hidden="true"
-                    th:style="|width: 8rem; height: 8rem; border-radius: 50%; display: grid; place-items: center; background: conic-gradient(#2563eb 0% ${taxa.percentual()}%, #e5e7eb ${taxa.percentual()}% 100%);|">
-                    <div style="width: 5rem; height: 5rem; border-radius: 50%; background: white;"></div>
+                <div class="rosca-com-percentual">
+                    <div aria-hidden="true"
+                        th:style="|width: 8rem; height: 8rem; border-radius: 50%; display: grid; place-items: center; background: conic-gradient(#2563eb 0% ${taxa.percentual()}%, #e5e7eb ${taxa.percentual()}% 100%);|">
+                        <div style="width: 5rem; height: 5rem; border-radius: 50%; background: white;"></div>
+                    </div>
+
+                    <strong class="rosca-percentual" th:text="|${taxa.percentual()}%|"></strong>
                 </div>
 
-                <p>
-                    <strong th:text="|${taxa.percentual()}%|"></strong>
-                    <span th:text="| — ${taxa.concluidas()} de ${taxa.enviadas()} concluídas|"></span>
-                </p>
+                <p th:text="|${taxa.concluidas()} de ${taxa.enviadas()} concluídas|"></p>
             </section>
         </div>
     </figure>

@@ -2,6 +2,7 @@
 <html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/estilo.css">
     <title>Tempo entre compra e entrega por ocasião</title>
     <style>
         .barras-entrega {
@@ -23,9 +24,9 @@
 </head>
 <body>
     <h1>Tempo entre compra e entrega por ocasião</h1>
-    <p><a th:href="@{/relatorios}">Voltar ao menu</a></p>
+    <p><a th:href="@{/relatorios}" class="botao-voltar">Voltar ao menu</a></p>
 
-    <table>
+    <table class="tabela-relatorio">
         <thead>
             <tr>
                 <th>Ocasião</th>

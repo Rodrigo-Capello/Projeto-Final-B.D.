@@ -1,0 +1,174 @@
+:root {
+    --fundo: #bfc6cd;
+    --superficie: #fff;
+    --texto: #1f2933;
+    --destaque: #233a5a;
+    --destaque-hover: #182b46;
+    --borda: #dce4e8;
+}
+
+body {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 36px 20px;
+    font-family: "Trebuchet MS", system-ui, sans-serif;
+    line-height: 1.5;
+    color: var(--texto);
+    background-color: var(--fundo);
+}
+
+h1 {
+    margin: 0 0 16px;
+    font-size: clamp(1.75rem, 4vw, 2.4rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.botao-menu {
+    display: inline-block;
+    margin: 4px 0;
+    padding: 10px 16px;
+    border-radius: 8px;
+    background: linear-gradient(180deg, #465970, #354a63 44%, #20334b);
+    border: 1px solid #17283c;
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 25%),
+                0 2px 4px rgb(23 36 58 / 25%);
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.botao-menu:hover {
+    background: linear-gradient(180deg, #516780, #293e58);
+}
+
+button.botao-menu {
+    font-family: inherit;
+    font-size: inherit;
+    cursor: pointer;
+}
+
+.tabela-relatorio {
+    width: 100%;
+    margin: 24px 0;
+    border-spacing: 0;
+    border: 1px solid var(--borda);
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: var(--superficie);
+}
+
+.tabela-relatorio th,
+.tabela-relatorio td {
+    padding: 12px 16px;
+    text-align: left;
+}
+
+.tabela-relatorio th {
+    background-color: #e8eff1;
+    font-size: 0.9rem;
+}
+
+.tabela-relatorio td {
+    border-top: 1px solid var(--borda);
+}
+
+.tabela-relatorio tbody tr:nth-child(even) {
+    background-color: #f8fafb;
+}
+
+.rosca-com-percentual {
+    display: inline-grid;
+    place-items: center;
+}
+
+.rosca-com-percentual > * {
+    grid-area: 1 / 1;
+}
+
+.rosca-percentual {
+    z-index: 1;
+    font-size: 1rem;
+    font-variant-numeric: tabular-nums;
+}
+
+.grade-roscas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+    gap: 16px;
+    margin-top: 16px;
+}
+
+.cartao-rosca {
+    padding: 16px;
+    border: 1px solid var(--borda);
+    border-radius: 12px;
+    background-color: var(--superficie);
+    text-align: center;
+}
+
+.cartao-rosca h3 {
+    display: grid;
+    place-items: center;
+    min-height: 2.8em;
+    margin: 0 0 12px;
+    font-size: 1rem;
+    line-height: 1.4;
+}
+
+.cartao-rosca p {
+    margin: 10px 0 0;
+    font-size: 0.875rem;
+}
+
+.pagina-inicial {
+    max-width: 720px;
+    margin: 24px auto 0;
+    text-align: center;
+}
+
+.pagina-inicial nav ul {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 26px;
+    max-width: 280px;
+    margin: 28px auto 0;
+    padding: 0;
+    list-style: none;
+}
+
+.pagina-inicial .botao-menu {
+    display: grid;
+    place-items: center;
+    box-sizing: border-box;
+    min-height: 44px;
+    padding: 8px 14px;
+    margin: 0;
+    text-align: center;
+}
+
+.botao-voltar {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 14px;
+    border: 1px solid #2b323a;
+    border-radius: 8px;
+    background: linear-gradient(180deg, #616b76, #4b5560 44%, #353e47);
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 25%),
+                0 2px 4px rgb(23 36 58 / 25%);
+    color: white;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.botao-voltar::before {
+    content: "←" / "";
+}
+
+.botao-voltar:hover,
+.botao-voltar:focus-visible {
+    border-color: #17283c;
+    background: linear-gradient(180deg, #465970, #354a63 44%, #20334b);
+}
