@@ -6,16 +6,18 @@
     <title>Relatórios de satisfação</title>
 </head>
 <body>
-    <h1>Relatórios de satisfação</h1>
+    <main class="pagina-inicial">
+        <h1>Relatórios de satisfação</h1>
 
-    <nav aria-label="Relatórios">
-        <ul>
-            <li><a th:href="@{/relatorios/conclusao}" class="botao-menu">Taxa de conclusão por categoria e ocasião</a></li>
-            <li><a th:href="@{/relatorios/satisfacao}" class="botao-menu">Satisfação por tema e ocasião</a></li>
-            <li><a th:href="@{/relatorios/entrega}" class="botao-menu">Tempo entre compra e entrega por ocasião</a></li>
-        </ul>
-    </nav>
+        <nav aria-label="Relatórios">
+            <ul>
+                <li><a th:href="@{/relatorios/conclusao}" class="botao-menu">Taxa de conclusão</a></li>
+                <li><a th:href="@{/relatorios/satisfacao}" class="botao-menu">Satisfação por tema</a></li>
+                <li><a th:href="@{/relatorios/entrega}" class="botao-menu">Tempo entre compra e entrega</a></li>
+            </ul>
+        </nav>
 
-    <p><a th:href="@{/}" class="botao-voltar">Voltar à página inicial</a></p>
+        <p><a th:href="@{/}" class="botao-voltar" style="margin-top: 16px;">Voltar</a></p>
+    </main>
 </body>
 </html>

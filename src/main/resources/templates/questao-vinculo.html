@@ -7,12 +7,12 @@
     <title>Vincular questão ao questionário</title>
 </head>
 <body>
-    <h1>Vincular questão ao questionário</h1>
+    <h1 class="titulo-questao">Vincular questão</h1>
 
-    <p th:if="${mensagem}" th:text="${mensagem}" role="status"></p>
-    <p th:if="${erro}" th:text="${erro}" role="alert"></p>
+    <p class="mensagem-cadastro" th:if="${mensagem}" th:text="${mensagem}" role="status"></p>
+    <p class="mensagem-cadastro" th:if="${erro}" th:text="${erro}" role="alert"></p>
 
-    <form th:action="@{/questoes/vincular}" method="post">
+    <form th:action="@{/questoes/vincular}" method="post" class="formulario-cadastro formulario-questao">
         <p>
             <label for="idQuestionario">Questionário</label>
             <select id="idQuestionario" name="idQuestionario" required>
@@ -33,9 +33,10 @@
             </select>
         </p>
 
-        <button type="submit" class="botao-menu">Vincular questão</button>
-
-        <p><a th:href="@{/}" class="botao-voltar">Voltar à página inicial</a></p>
+        <div class="acoes-questao">
+            <button type="submit" class="botao-menu">Vincular</button>
+            <a th:href="@{/}" class="botao-voltar">Voltar</a>
+        </div>
     </form>
 </body>
 </html>

@@ -7,22 +7,29 @@
     <title>Gerar avaliação</title>
 </head>
 <body>
-    <h1>Gerar avaliação</h1>
+    <h1 class="titulo-questao">Gerar avaliação</h1>
 
-    <p th:if="${erro}" th:text="${erro}" role="alert"></p>
+    <p class="mensagem-cadastro mensagem-erro"
+       th:if="${erro}" th:text="${erro}" role="alert"></p>
 
-    <p th:if="${codigoGerado}" role="status">
-        Avaliação gerada.
-        <a th:href="@{/avaliacoes/{codigo}(codigo=${codigoGerado})}">
-            Abrir formulário do cliente
-        </a>
-    </p>
+    <div class="mensagem-cadastro" th:if="${codigoGerado != null}">
+        <p role="status">Avaliação gerada</p>
 
-    <p th:if="${compras.isEmpty()}">
-        Nenhuma compra entregue está disponível para gerar uma avaliação.
-    </p>
+        <div class="acoes-questao">
+            <a th:href="@{/avaliacoes/{codigo}(codigo=${codigoGerado})}"
+               class="botao-menu">Ir para a avaliação do cliente</a>
+            <a th:href="@{/}" class="botao-voltar">Voltar</a>
+        </div>
+    </div>
 
-    <form th:unless="${compras.isEmpty()}"
+    <div class="mensagem-cadastro"
+         th:if="${codigoGerado == null and compras.isEmpty()}">
+        <p>Nenhuma compra entregue está disponível para avaliação</p>
+        <a th:href="@{/}" class="botao-voltar">Voltar</a>
+    </div>
+
+    <form class="formulario-cadastro formulario-questao"
+          th:if="${codigoGerado == null and !compras.isEmpty()}"
           th:action="@{/avaliacoes/nova}" method="post">
         <label for="idCompra">Compra</label>
         <select id="idCompra" name="idCompra" required>
@@ -33,9 +40,10 @@
             </option>
         </select>
 
-        <button type="submit" class="botao-menu">Gerar avaliação</button>
-
+        <div class="acoes-questao">
+            <button type="submit" class="botao-menu">Gerar avaliação</button>
+            <a th:href="@{/}" class="botao-voltar">Voltar</a>
+        </div>
     </form>
-    <p><a th:href="@{/}" class="botao-voltar">Voltar à página inicial</a></p>
 </body>
 </html>

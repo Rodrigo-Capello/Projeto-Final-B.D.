@@ -36,8 +36,7 @@ O questionário é escolhido de acordo com a categoria da compra, cestas ou caix
 **Objetivo** — Comparar quantas avaliações foram enviadas e concluídas em cada combinação de categoria e ocasião. A tabela mostra as contagens e a taxa de conclusão, e os gráficos de rosca mostram a proporção de avaliações concluídas e pendentes. O filtro permite exibir apenas os grupos com taxa de conclusão abaixo de 60%.
 A empresa pode usar o relatório para identificar em quais categorias e ocasiões vale incentivar mais os clientes a responder à pesquisa.
 
-<!-- Inserir imagem - tabela e gráfico -->
-
+![Relatório de conclusão por categoria e ocasião](docs/relatorio-conclusao.png)
 
 ```sql
 SELECT
@@ -73,8 +72,7 @@ botão **Aplicar/Remover filtro** controla essa condição por meio de um parâm
 **Objetivo** — Comparar as notas médias das questões de escala de cada tema entre as ocasiões: Normal, Natal e Dia dos Namorados. A tabela mostra a média e a quantidade de notas usadas no cálculo. O gráfico coloca lado a lado as médias das ocasiões para cada tema.
 A empresa pode usar o relatório para identificar quais pontos da experiência dos clientes precisam de mais atenção e em quais ocasiões priorizar melhorias.
 
-<!-- Inserir imagem - tabela e gráfico -->
-
+![Relatório de satisfação por tema e ocasião](docs/relatorio-satisfacao.png)
 
 ```sql
 SELECT
@@ -106,8 +104,7 @@ ORDER BY qr.ocasiao, t.nome;
 **Objetivo** — Comparar o intervalo entre a compra e a entrega nas ocasiões Normal, Natal e Dia dos Namorados. A tabela mostra a quantidade de compras entregues, o intervalo médio, o maior intervalo e a diferença em relação à média geral. Para cada ocasião, o gráfico coloca a média da ocasião e a média geral em barras alinhadas.
 A empresa pode usar essa comparação para identificar em quais ocasiões os pedidos costumam ser feitos com mais antecedência e planejar quando começar a receber encomendas e organizar a produção ou até aumentar estoque em períodos que os pedidos são feitos muito em cima da hora.
 
-<!-- Inserir imagem - tabela e gráfico -->
-
+![Relatório de tempo entre compra e entrega por ocasião](docs/relatorio-entrega.png)
 
 ```sql
 SELECT

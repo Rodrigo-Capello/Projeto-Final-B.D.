@@ -4,29 +4,14 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/css/estilo.css">
     <title>Tempo entre compra e entrega por ocasião</title>
-    <style>
-        .barras-entrega {
-            display: grid;
-            gap: 0.15rem;
-        }
-
-        .barras-entrega label {
-            display: grid;
-            grid-template-columns: 9rem minmax(5rem, 12rem) auto;
-            align-items: center;
-            column-gap: 0.5rem;
-        }
-
-        .barras-entrega meter {
-            width: 100%;
-        }
-    </style>
 </head>
 <body>
-    <h1>Tempo entre compra e entrega por ocasião</h1>
-    <p><a th:href="@{/relatorios}" class="botao-voltar">Voltar ao menu</a></p>
+    <header class="cabecalho-conclusao">
+        <h1>Tempo entre compra e entrega por ocasião</h1>
+        <a th:href="@{/relatorios}" class="botao-voltar">Voltar</a>
+    </header>
 
-    <table class="tabela-relatorio">
+    <table class="tabela-relatorio tabela-conclusao">
         <thead>
             <tr>
                 <th>Ocasião</th>
@@ -47,10 +32,10 @@
         </tbody>
     </table>
 
-    <figure th:if="${!temposEntrega.isEmpty()}">
-        <figcaption>Intervalo médio entre compra e entrega (dias)</figcaption>
+    <figure class="grafico-entrega" th:if="${!temposEntrega.isEmpty()}">
+        <figcaption class="titulo-graficos-conclusao">Intervalo médio entre compra e entrega (dias)</figcaption>
 
-        <div th:each="linha : ${temposEntrega}">
+        <div class="cartao-entrega" th:each="linha : ${temposEntrega}">
             <h3 th:text="${linha.ocasiao()}"></h3>
 
             <div class="barras-entrega">

@@ -4,48 +4,14 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/css/estilo.css">
     <title>Satisfação por tema e ocasião</title>
-
-    <style>
-        .grafico-satisfacao { margin: 1.5rem 0; }
-
-        .grupos-satisfacao {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-        }
-
-        .barras-satisfacao {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .coluna-satisfacao {
-            display: grid;
-            justify-items: center;
-            gap: 0.35rem;
-            width: 5rem;
-            text-align: center;
-        }
-
-        .trilho-satisfacao {
-            display: flex;
-            align-items: flex-end;
-            width: 2rem;
-            height: 8rem;
-            background: #e5e7eb;
-        }
-
-        .barra-satisfacao {
-            width: 100%;
-            background: #2563eb;
-        }
-    </style>
 </head>
 <body>
-    <h1>Satisfação por tema e ocasião</h1>
-    <p><a th:href="@{/relatorios}" class="botao-voltar">Voltar ao menu</a></p>
+    <header class="cabecalho-conclusao">
+        <h1>Satisfação por tema e ocasião</h1>
+        <a th:href="@{/relatorios}" class="botao-voltar">Voltar</a>
+    </header>
 
-    <table class="tabela-relatorio">
+    <table class="tabela-relatorio tabela-conclusao">
         <thead>
             <tr>
                 <th>Ocasião</th>

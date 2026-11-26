@@ -6,22 +6,25 @@
     <title>Relatórios de satisfação</title>
 </head>
 <body>
-    <h1>Relatórios de satisfação</h1>
-    <p><a th:href="@{/relatorios}" class="botao-voltar">Voltar ao menu</a></p>
-
-    <h2>Taxa de conclusão por categoria e ocasião</h2>
+    <header class="cabecalho-conclusao">
+        <h1>Taxa de conclusão por categoria e ocasião</h1>
+        <a th:href="@{/relatorios}" class="botao-voltar">Voltar</a>
+    </header>
+    <div class="filtro-conclusao">
+        <p>Mostrar apenas grupos com taxa de conclusão abaixo de 60%.</p>
         <form th:action="@{/relatorios/conclusao}" method="get">
-            <p>Mostrar apenas grupos com taxa de conclusão abaixo de 60%.</p>
 
             <input th:unless="${abaixoDe60}"
                 type="hidden" name="abaixoDe60" value="true">
 
             <button type="submit"
-                    th:text="${abaixoDe60} ? 'Remover filtro' : 'Aplicar filtro'">
+                    th:text="${abaixoDe60} ? 'Remover filtro' : 'Aplicar filtro'"
+                    class="botao-menu">
                 Aplicar filtro
             </button>
         </form>
-    <table class="tabela-relatorio">
+    </div>
+    <table class="tabela-relatorio tabela-conclusao">
         <thead>
             <tr>
                 <th>Categoria</th>
@@ -42,16 +45,18 @@
         </tbody>
     </table>
     <figure th:if="${!taxas.isEmpty()}">
-        <figcaption>Avaliações concluídas e pendentes por grupo</figcaption>
+        <figcaption class="titulo-graficos-conclusao">Avaliações concluídas e pendentes por grupo</figcaption>
 
         <div class="grade-roscas">
             <section th:each="taxa : ${taxas}" th:if="${taxa.enviadas() > 0}" class="cartao-rosca">
                 <h3 th:text="|${taxa.categoria()} — ${taxa.ocasiao()}|"></h3>
 
                 <div class="rosca-com-percentual">
-                    <div aria-hidden="true"
-                        th:style="|width: 8rem; height: 8rem; border-radius: 50%; display: grid; place-items: center; background: conic-gradient(#2563eb 0% ${taxa.percentual()}%, #e5e7eb ${taxa.percentual()}% 100%);|">
-                        <div style="width: 5rem; height: 5rem; border-radius: 50%; background: white;"></div>
+                    <div class="rosca-conclusao"
+                        aria-hidden="true"
+                        th:classappend="${taxa.percentual() < 60 ? 'taxa-baixa' : (taxa.percentual() < 80 ? 'taxa-media' : 'taxa-alta')}"
+                        th:style="|--percentual: ${taxa.percentual()}%;|">
+                        <div class="rosca-centro"></div>
                     </div>
 
                     <strong class="rosca-percentual" th:text="|${taxa.percentual()}%|"></strong>

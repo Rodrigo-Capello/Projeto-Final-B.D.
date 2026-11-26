@@ -5,57 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/css/estilo.css">
     <title>Pesquisa de satisfação</title>
-
-    <style>
-        .escala-notas {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .escala-notas label {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.25rem;
-            cursor: pointer;
-        }
-    </style>
 </head>
 <body>
-    <h1>Pesquisa de satisfação</h1>
+    <main class="pagina-avaliacao">
+        <h1>Pesquisa de satisfação</h1>
 
-    <p th:if="${enviada}">Obrigado! Sua avaliação foi enviada.</p>
+        <p class="mensagem-cadastro" th:if="${enviada}">Obrigado! Sua avaliação foi enviada.</p>
 
-    <p th:if="${perguntas.isEmpty() and enviada != true}">
-        Esta avaliação está indisponível.
-    </p>
+        <p class="mensagem-cadastro" th:if="${perguntas.isEmpty() and enviada != true}">
+            Esta avaliação está indisponível.
+        </p>
 
-    <p th:if="${erro}" th:text="${erro}"></p>
+        <p th:if="${erro}" th:text="${erro}"></p>
 
-    <form th:unless="${perguntas.isEmpty()}"
-          th:action="@{/avaliacoes/{codigo}(codigo=${codigoAvaliacao})}"
-          method="post">
-        <fieldset th:each="pergunta : ${perguntas}">
-            <legend th:text="${pergunta.enunciado()}"></legend>
+        <form th:unless="${perguntas.isEmpty()}"
+            th:action="@{/avaliacoes/{codigo}(codigo=${codigoAvaliacao})}"
+            method="post">
+            <fieldset th:each="pergunta : ${perguntas}">
+                <legend th:text="${pergunta.enunciado()}"></legend>
 
-            <div class="escala-notas" th:if="${pergunta.tipo() == 'escala'}"
-                th:with="rotulos=${ {'Muito ruim', 'Ruim', 'Regular', 'Bom', 'Muito bom'} }">
-                <label th:each="nota : ${#numbers.sequence(1, 5)}">
-                    <span th:text="|${nota} — ${rotulos[nota - 1]}|"></span>
-                    <input type="radio"
+                <div class="escala-notas" th:if="${pergunta.tipo() == 'escala'}"
+                    th:with="rotulos=${ {'Muito ruim', 'Ruim', 'Regular', 'Bom', 'Muito bom'} }">
+                    <label th:each="nota : ${#numbers.sequence(1, 5)}">
+                        <span th:text="|${nota} — ${rotulos[nota - 1]}|"></span>
+                        <input type="radio"
+                            th:name="|resposta_${pergunta.id()}|"
+                            th:value="${nota}"
+                            required>
+                    </label>
+                </div>
+
+                <textarea th:if="${pergunta.tipo() == 'texto_livre'}"
                         th:name="|resposta_${pergunta.id()}|"
-                        th:value="${nota}"
-                        required>
-                </label>
-            </div>
-
-            <label th:if="${pergunta.tipo() == 'texto_livre'}">
-                Comentário
-                <textarea th:name="|resposta_${pergunta.id()}|" rows="3"></textarea>
-            </label>
-        </fieldset>
-        <button type="submit" class="botao-menu">Enviar avaliação</button>
-    </form>
+                        aria-label="Comentário"
+                        rows="3">
+                </textarea>
+            </fieldset>
+            <button type="submit" class="botao-menu">Enviar avaliação</button>
+        </form>
+    </main>
 </body>
 </html>

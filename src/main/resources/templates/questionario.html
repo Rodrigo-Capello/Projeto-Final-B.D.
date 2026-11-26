@@ -8,12 +8,12 @@
 </head>
 <body>
     <main>
-        <h1>Cadastrar questionário</h1>
+        <h1 class="titulo-questao">Cadastrar questionário</h1>
 
-        <p th:if="${param.sucesso != null}">Questionário cadastrado com sucesso.</p>
-        <p th:if="${erro != null}" th:text="${erro}"></p>
+        <p class="mensagem-cadastro" th:if="${param.sucesso != null}">Questionário cadastrado com sucesso.</p>
+        <p class="mensagem-cadastro mensagem-erro" th:if="${erro != null}" th:text="${erro}"></p>
 
-        <form th:action="@{/questionarios/novo}" method="post">
+        <form th:action="@{/questionarios/novo}" method="post" class="formulario-cadastro formulario-questao">
             <p>
                 <label for="titulo">Título</label><br>
                 <input id="titulo" name="titulo" type="text" required>
@@ -45,10 +45,12 @@
                 </select>
             </p>
 
-            <button type="submit" class="botao-menu">Cadastrar questionário</button>
+            <div class="acoes-questao">
+                <button type="submit" class="botao-menu">Cadastrar</button>
+                <a th:href="@{/}" class="botao-voltar">Voltar</a>
+            </div>
         </form>
 
-        <p><a th:href="@{/}" class="botao-voltar">Voltar para a página inicial</a></p>
     </main>
 </body>
 </html>
