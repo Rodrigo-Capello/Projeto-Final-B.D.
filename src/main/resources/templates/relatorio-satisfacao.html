@@ -11,7 +11,7 @@
         <a th:href="@{/relatorios}" class="botao-voltar">Voltar</a>
     </header>
 
-    <table class="tabela-relatorio tabela-conclusao">
+    <table class="tabela-relatorio">
         <thead>
             <tr>
                 <th>Ocasião</th>
@@ -40,7 +40,7 @@
                 <div class="barras-satisfacao">
                     <div class="coluna-satisfacao" th:each="linha : ${grupo.value}">
                         <strong th:text="${linha.notaMedia()}"></strong>
-                        <div class="trilho-satisfacao" aria-hidden="true">
+                        <div class="trilho-satisfacao">
                             <div class="barra-satisfacao"
                                 th:style="|height: ${linha.notaMedia() * 20}%;|"></div>
                         </div>

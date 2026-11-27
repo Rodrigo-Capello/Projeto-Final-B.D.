@@ -1,3 +1,14 @@
+/* Índice
+ - Linha  12 — Estilos gerais
+ - Linha 138 — Página inicial
+ - Linha 166 — Relatório de conclusão — filtro e gráficos
+ - Linha 262 — Relatório de satisfação — cartões e gráfico de barras
+ - Linha 328 — Relatório de entrega — comparação das médias
+ - Linha 380 — Formulários de cadastro
+ - Linha 422 — Cadastro de questão
+ - Linha 437 — Avaliação do cliente
+ */
+
 /* Estilos gerais */
 
 :root {
@@ -90,8 +101,10 @@ button.botao-menu {
 }
 
 .tabela-relatorio th {
-    background-color: #e8eff1;
-    font-size: 0.9rem;
+    background-color: #233a5a;
+    color: #fff;
+    font-weight: 700;
+    font-size: 1rem;
 }
 
 .tabela-relatorio td {
@@ -100,13 +113,6 @@ button.botao-menu {
 
 .tabela-relatorio tbody tr:nth-child(even) {
     background-color: #f8fafb;
-}
-
-.tabela-conclusao th {
-    background-color: #233a5a;
-    color: #fff;
-    font-weight: 700;
-    font-size: 1rem;
 }
 
 .cabecalho-conclusao {
@@ -119,6 +125,14 @@ button.botao-menu {
 
 .cabecalho-conclusao h1{
     margin: 0;
+}
+
+.cartao-rosca,
+.grupo-satisfacao,
+.cartao-entrega {
+    border: 1px solid var(--borda);
+    border-radius: 12px;
+    background: var(--superficie);
 }
 
 /* Página inicial */
@@ -204,9 +218,6 @@ button.botao-menu {
 
 .cartao-rosca {
     padding: 16px;
-    border: 1px solid var(--borda);
-    border-radius: 12px;
-    background-color: var(--superficie);
     text-align: center;
 }
 
@@ -242,7 +253,7 @@ button.botao-menu {
     font-size: 1.1rem;
 }
 
-.titulo-graficos-conclusao {
+figcaption {
     font-size: 1.25rem;
     font-weight: 700;
     color: #233a5a;
@@ -257,9 +268,6 @@ button.botao-menu {
 
 .grafico-satisfacao figcaption {
     margin-bottom: 16px;
-    color: #233a5a;
-    font-size: 1.25rem;
-    font-weight: 700;
 }
 
 .grupos-satisfacao {
@@ -270,9 +278,6 @@ button.botao-menu {
 
 .grupo-satisfacao {
     padding: 20px;
-    border: 1px solid var(--borda);
-    border-radius: 12px;
-    background-color: var(--superficie);
     text-align: center;
 }
 
@@ -325,9 +330,6 @@ button.botao-menu {
 .cartao-entrega {
     margin-top: 12px;
     padding: 16px 20px;
-    border: 1px solid var(--borda);
-    border-radius: 12px;
-    background: var(--superficie);
 }
 
 .cartao-entrega h3 {
@@ -385,6 +387,7 @@ button.botao-menu {
 
 .formulario-cadastro label {
     font-weight: 700;
+    font-size: 1.15rem;
 }
 
 .formulario-cadastro :is(input[type="text"], textarea, select) {
@@ -399,7 +402,8 @@ button.botao-menu {
     font: inherit;
 }
 
-.formulario-cadastro textarea {
+.formulario-cadastro textarea,
+.pagina-avaliacao textarea {
     resize: vertical;
 }
 
@@ -419,10 +423,6 @@ button.botao-menu {
 
 .titulo-questao {
     text-align: center;
-}
-
-.formulario-questao label {
-    font-size: 1.15rem;
 }
 
 .acoes-questao {
@@ -472,7 +472,6 @@ button.botao-menu {
     border-radius: 6px;
     color: var(--texto);
     font: inherit;
-    resize: vertical;
 }
 
 .pagina-avaliacao input[type="radio"] {

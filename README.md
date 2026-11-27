@@ -7,7 +7,7 @@
 ## Natureza e particularidade
 
 O projeto é uma pesquisa de satisfação pós-compra para uma empresa de cestas matinais e caixas de presente. As questões de escala recebem notas de 1 a 5 (1 sendo muito ruim e 5 muito bom) e são agrupadas por tema: atendimento, entrega, apresentação, qualidade dos produtos e outro. A pesquisa também inclui algumas questões de texto livre.
-O questionário é escolhido de acordo com a categoria da compra, cestas ou caixas de presente, e ocasião, Normal, Natal ou Dia dos Namorados.
+O questionário é escolhido de acordo com a categoria da compra, cestas ou caixas de presente, e ocasião, Normal, Natal ou Dia dos Namorados. É possível cadastrar questionários para Dia dos Pais e Dia das Mães também.
 
 ## Como rodar o sistema
 
@@ -24,7 +24,7 @@ O questionário é escolhido de acordo com a categoria da compra, cestas ou caix
    $env:DB_URL = "jdbc:postgresql://localhost:5432/NOME_DO_BANCO"
    $env:DB_USUARIO = "USUARIO"
    $env:DB_SENHA = Read-Host "Senha do PostgreSQL"
-   mvn spring-boot:run
+   mvn spring-boot:run OU .\mvnw.cmd spring-boot:run
    ```
 
 6. Com a aplicação rodando, abra a [página inicial](http://localhost:8080/).
@@ -56,7 +56,7 @@ ORDER BY q.categoria, q.ocasiao;
 ```
 
 
-- `LEFT JOIN` associa a tabela questionario à avaliacao. Foi escolhido para incluir questionários que não tivessem avaliação, apesar de que com a carga usada não foi realmente necessário.
+- `LEFT JOIN` associa as tabelas questionario e avaliacao e inclui no relatório os questionários que ainda não têm avaliações vinculadas.
 - `GROUP BY` agrupa as avaliações por categoria e ocasião.
 - `COUNT` conta as avaliações enviadas e as concluídas em cada grupo. Para as concluídas, entram apenas as que tem datas de conclusão preenchidas.
 - `HAVING` filtra os grupos com taxa de conclusão abaixo de 60%. É aplicado depois do `GROUP BY` para funcionar com as contagens de cada grupo.

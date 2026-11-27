@@ -10,10 +10,10 @@
     <h1 class="titulo-questao">Gerar avaliação</h1>
 
     <p class="mensagem-cadastro mensagem-erro"
-       th:if="${erro}" th:text="${erro}" role="alert"></p>
+       th:if="${erro}" th:text="${erro}"></p>
 
     <div class="mensagem-cadastro" th:if="${codigoGerado != null}">
-        <p role="status">Avaliação gerada</p>
+        <p>Avaliação gerada</p>
 
         <div class="acoes-questao">
             <a th:href="@{/avaliacoes/{codigo}(codigo=${codigoGerado})}"
@@ -28,7 +28,7 @@
         <a th:href="@{/}" class="botao-voltar">Voltar</a>
     </div>
 
-    <form class="formulario-cadastro formulario-questao"
+    <form class="formulario-cadastro"
           th:if="${codigoGerado == null and !compras.isEmpty()}"
           th:action="@{/avaliacoes/nova}" method="post">
         <label for="idCompra">Compra</label>

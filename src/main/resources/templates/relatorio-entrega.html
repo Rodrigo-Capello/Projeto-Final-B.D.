@@ -11,7 +11,7 @@
         <a th:href="@{/relatorios}" class="botao-voltar">Voltar</a>
     </header>
 
-    <table class="tabela-relatorio tabela-conclusao">
+    <table class="tabela-relatorio">
         <thead>
             <tr>
                 <th>Ocasião</th>
@@ -33,7 +33,7 @@
     </table>
 
     <figure class="grafico-entrega" th:if="${!temposEntrega.isEmpty()}">
-        <figcaption class="titulo-graficos-conclusao">Intervalo médio entre compra e entrega (dias)</figcaption>
+        <figcaption>Intervalo médio entre compra e entrega (dias)</figcaption>
 
         <div class="cartao-entrega" th:each="linha : ${temposEntrega}">
             <h3 th:text="${linha.ocasiao()}"></h3>

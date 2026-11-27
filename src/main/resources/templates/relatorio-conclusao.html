@@ -24,7 +24,7 @@
             </button>
         </form>
     </div>
-    <table class="tabela-relatorio tabela-conclusao">
+    <table class="tabela-relatorio">
         <thead>
             <tr>
                 <th>Categoria</th>
@@ -45,7 +45,7 @@
         </tbody>
     </table>
     <figure th:if="${!taxas.isEmpty()}">
-        <figcaption class="titulo-graficos-conclusao">Avaliações concluídas e pendentes por grupo</figcaption>
+        <figcaption>Avaliações concluídas e pendentes por grupo</figcaption>
 
         <div class="grade-roscas">
             <section th:each="taxa : ${taxas}" th:if="${taxa.enviadas() > 0}" class="cartao-rosca">
@@ -53,7 +53,6 @@
 
                 <div class="rosca-com-percentual">
                     <div class="rosca-conclusao"
-                        aria-hidden="true"
                         th:classappend="${taxa.percentual() < 60 ? 'taxa-baixa' : (taxa.percentual() < 80 ? 'taxa-media' : 'taxa-alta')}"
                         th:style="|--percentual: ${taxa.percentual()}%;|">
                         <div class="rosca-centro"></div>

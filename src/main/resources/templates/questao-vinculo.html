@@ -9,10 +9,10 @@
 <body>
     <h1 class="titulo-questao">Vincular questão</h1>
 
-    <p class="mensagem-cadastro" th:if="${mensagem}" th:text="${mensagem}" role="status"></p>
-    <p class="mensagem-cadastro" th:if="${erro}" th:text="${erro}" role="alert"></p>
+    <p class="mensagem-cadastro" th:if="${mensagem}" th:text="${mensagem}"></p>
+    <p class="mensagem-cadastro" th:if="${erro}" th:text="${erro}"></p>
 
-    <form th:action="@{/questoes/vincular}" method="post" class="formulario-cadastro formulario-questao">
+    <form th:action="@{/questoes/vincular}" method="post" class="formulario-cadastro">
         <p>
             <label for="idQuestionario">Questionário</label>
             <select id="idQuestionario" name="idQuestionario" required>

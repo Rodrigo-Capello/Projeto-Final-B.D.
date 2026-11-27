@@ -13,7 +13,7 @@
         <p class="mensagem-cadastro" th:if="${param.sucesso != null}">Questionário cadastrado com sucesso.</p>
         <p class="mensagem-cadastro mensagem-erro" th:if="${erro != null}" th:text="${erro}"></p>
 
-        <form th:action="@{/questionarios/novo}" method="post" class="formulario-cadastro formulario-questao">
+        <form th:action="@{/questionarios/novo}" method="post" class="formulario-cadastro">
             <p>
                 <label for="titulo">Título</label><br>
                 <input id="titulo" name="titulo" type="text" required>
